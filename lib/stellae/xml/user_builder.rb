@@ -10,7 +10,8 @@ module Stellae
       def xml
         xml_markup = Builder::XmlMarkup.new
 
-        xml_markup.user(
+        xml_markup.tag!(
+          'user',
           namespaces
         ) do |u|
           u.tag! "#{namespace}:user_name", @username
