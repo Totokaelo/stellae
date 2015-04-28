@@ -24,4 +24,32 @@ describe Stellae::Gateway do
 
     expect(response.success?).to be true
   end
+
+  describe '#import_line_list' do
+    let(:hat_line_list_row) {
+      llr = Stellae::Request::LineListRow.new
+      llr.season_code = 'SS15'
+      llr.upc = 'tktest0001'
+      llr.description = 'cool hat'
+      llr.style = 'black ballcap'
+      llr.color_code = '001'
+      llr.size_code = '0'
+
+      llr
+    }
+
+    let(:import_line_list_request) {
+      Stellae::Request::ImportLineListRequest.new([
+        hat_line_list_row
+      ])
+    }
+
+    it 'returns success' do
+      response = subject.import_line_list(
+        import_line_list_request
+      )
+
+      expect(response.success?).to be true
+    end
+  end
 end

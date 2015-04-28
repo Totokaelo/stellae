@@ -75,17 +75,26 @@ module Stellae
       raise NotImplementedError
     end
 
-    def import_line_list(line_list_rows)
+    def import_line_list(request)
       # This allows the import of new items to the line list
+      request_xml_builder = Stellae::RequestXmlBuilder.new(
+        username: username,
+        password: password,
+        request: request
+      )
 
-      client.call(
+      response = client.call(
         :import_line_list,
-        attributes: { xmlns: 'SII' }
-      ) do |locals|
-        locals.message({
-          line_list_rows: line_list_rows.map(&:to_hash)
-        })
-      end
+        attributes: default_request_attributes,
+        message: request_xml_builder.xml
+      )
+
+      response_parser = Stellae::ResponseParser.new(response)
+
+      Response.new(
+        request: request,
+        status: response_parser.status
+      )
     end
 
     def new_order_entry
@@ -94,11 +103,7 @@ module Stellae
       raise NotImplementedError
     end
 
-    def new_purchase_order_entry
-      raise NotImplementedError
-    end
-
-    def new_purchase_order_receipt
+    def purchase_order_receipt
       # This is to find out what has been received.
       raise NotImplementedError
     end
@@ -110,11 +115,19 @@ module Stellae
       raise NotImplementedError
     end
 
+    def new_purchase_order_entry
+      # Per Donald, don't implement
+      raise NotImplementedError
+    end
+
+
     def new_delivery_ticket
+      # Per Donald, don't implement
       raise NotImplementedError
     end
 
     def import_invoice
+      # Per Donald, don't implement
       raise NotImplementedError
     end
 

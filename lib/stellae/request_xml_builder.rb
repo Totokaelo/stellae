@@ -23,8 +23,7 @@ module Stellae
 
     def add_user_element(xml_markup)
       xml_markup.user(
-        'xmlns:a' => 'http://schemas.datacontract.org/2004/07/',
-        'xmlns:i' => 'http://www.w3.org/2001/XMLSchema-instance'
+        namespaces
       ) do |u|
         u.a :user_name, username
         u.a :user_password, password
@@ -35,11 +34,9 @@ module Stellae
       if request
         xml_markup.tag!(
           request.root_tag_name,
-          {
-            'xmlns:a' => 'http://schemas.datacontract.org/2004/07/',
-            'xmlns:i' => 'http://www.w3.org/2001/XMLSchema-instance'
-          }
+          namespaces
         ) do
+          request.write_xml(xml_markup)
         end
       end
     end
@@ -47,5 +44,12 @@ module Stellae
     attr_reader :username,
       :password,
       :request
+
+    def namespaces
+      {
+        'xmlns:a' => 'http://schemas.datacontract.org/2004/07/',
+        'xmlns:i' => 'http://www.w3.org/2001/XMLSchema-instance'
+      }
+    end
   end
 end
