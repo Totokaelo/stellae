@@ -4,8 +4,12 @@ require 'savon'
 require 'stellae/status_codes'
 
 require 'stellae/request/base'
+
 require 'stellae/xml'
 require 'stellae/xml/user_builder'
+require 'stellae/xml/line_list_row_builder'
+require 'stellae/xml/line_list_rows_builder'
+
 require 'stellae/request_xml_builder'
 
 require 'stellae/response'
@@ -41,17 +45,12 @@ module Stellae
     def get_catalog_information(request)
       # SOAP DATA TYPE: Catalog_items_request
       # FLAGS, season_code, style, upc
-
-      request_xml_builder = Stellae::RequestXmlBuilder.new(
-        username: username,
-        password: password,
-        request: request
-      )
+      request_xml = user_xml + '<cir xmlns:a="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"/>'
 
       response = client.call(
         :get_catalog_information,
         attributes: default_request_attributes,
-        message: request_xml_builder.xml
+        message: request_xml
       )
 
       response_parser = Stellae::ResponseParser.new(response)
@@ -158,6 +157,13 @@ module Stellae
 
     def wsdl
       "#{@endpoint_url}?wsdl"
+    end
+
+    def user_xml
+      @user_xml ||= Stellae::Xml::UserBuilder.new(
+        username: username,
+        password: password
+      ).xml
     end
 
     def default_request_attributes
