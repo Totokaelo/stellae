@@ -4,6 +4,8 @@ require 'savon'
 require 'stellae/status_codes'
 
 require 'stellae/request/base'
+require 'stellae/xml'
+require 'stellae/xml/user_builder'
 require 'stellae/request_xml_builder'
 
 require 'stellae/response'

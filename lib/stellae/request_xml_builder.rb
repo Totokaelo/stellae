@@ -22,12 +22,14 @@ module Stellae
     end
 
     def add_user_element(xml_markup)
-      xml_markup.user(
-        namespaces
-      ) do |u|
-        u.a :user_name, username
-        u.a :user_password, password
-      end
+      user_builder = Stellae::Xml::UserBuilder.new(
+        username: username,
+        password: password
+      )
+
+      xml_markup << user_builder.xml
+
+      nil
     end
 
     def add_request_element(xml_markup)
