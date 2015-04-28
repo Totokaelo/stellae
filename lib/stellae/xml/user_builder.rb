@@ -23,7 +23,7 @@ module Stellae
       private
 
       def namespace
-        'a'
+        Stellae::Xml::TAG_NAMESPACE
       end
 
       def namespaces

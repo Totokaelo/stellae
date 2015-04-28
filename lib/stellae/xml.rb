@@ -1,8 +1,11 @@
 module Stellae
   module Xml
+    TAG_NAMESPACE = 'a'
+    INSTANCE_NAMESPACE = 'i'
+
     NAMESPACES = {
-      'xmlns:a' => 'http://schemas.datacontract.org/2004/07/',
-      'xmlns:i' => 'http://www.w3.org/2001/XMLSchema-instance'
+      "xmlns:#{TAG_NAMESPACE}" => 'http://schemas.datacontract.org/2004/07/',
+      "xmlns:#{INSTANCE_NAMESPACE}" => 'http://www.w3.org/2001/XMLSchema-instance'
     }
   end
 end
