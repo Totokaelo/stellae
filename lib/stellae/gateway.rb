@@ -15,8 +15,6 @@ require 'stellae/xml/catalog_information_request_builder'
 require 'stellae/xml/line_list_row_builder'
 require 'stellae/xml/line_list_rows_builder'
 
-require 'stellae/request_xml_builder'
-
 require 'stellae/response'
 require 'stellae/response_parser'
 
