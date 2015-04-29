@@ -6,7 +6,9 @@ require 'stellae/status_codes'
 require 'stellae/request/base'
 
 require 'stellae/xml'
+require 'stellae/xml/fragment_builder'
 require 'stellae/xml/user_builder'
+require 'stellae/xml/catalog_information_request_builder'
 require 'stellae/xml/line_list_row_builder'
 require 'stellae/xml/line_list_rows_builder'
 
@@ -45,7 +47,8 @@ module Stellae
     def get_catalog_information(request)
       # SOAP DATA TYPE: Catalog_items_request
       # FLAGS, season_code, style, upc
-      request_xml = user_xml + '<cir xmlns:a="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"/>'
+      catalog_information_request_xml = Stellae::Xml::CatalogInformationRequestBuilder.new.xml
+      request_xml = [user_xml, catalog_information_request_xml].join
 
       response = client.call(
         :get_catalog_information,
@@ -77,17 +80,17 @@ module Stellae
     end
 
     def import_line_list(request)
-      # This allows the import of new items to the line list
-      request_xml_builder = Stellae::RequestXmlBuilder.new(
-        username: username,
-        password: password,
-        request: request
-      )
+      line_list_rows_xml = request.line_list_rows.map do |line_list_row|
+        Stellae::Xml::LineListRowBuilder.new(line_list_row).xml
+      end
+
+      collection_xml = Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml).xml
+      request_xml = [user_xml, catalog_information_request_xml].join
 
       response = client.call(
         :import_line_list,
         attributes: default_request_attributes,
-        message: request_xml_builder.xml
+        message: request_xml
       )
 
       response_parser = Stellae::ResponseParser.new(response)

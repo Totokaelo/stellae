@@ -1,7 +1,7 @@
 module Stellae
   module Xml
     # Builds a <user> fragment
-    class UserBuilder
+    class UserBuilder < FragmentBuilder
       def initialize(username:, password:)
         @username = username
         @password = password
@@ -19,16 +19,6 @@ module Stellae
         end
 
         xml_markup.target!
-      end
-
-      private
-
-      def namespace
-        Stellae::Xml::TAG_NAMESPACE
-      end
-
-      def namespaces
-        Stellae::Xml::NAMESPACES
       end
     end
   end
