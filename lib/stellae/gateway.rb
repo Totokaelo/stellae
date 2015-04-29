@@ -3,7 +3,10 @@ require 'savon'
 
 require 'stellae/status_codes'
 
-require 'stellae/request/base'
+require 'stellae/request/catalog_information_request'
+require 'stellae/request/import_line_list_request'
+
+require 'stellae/types/line_list_row'
 
 require 'stellae/xml'
 require 'stellae/xml/fragment_builder'
@@ -47,8 +50,17 @@ module Stellae
     def get_catalog_information(request)
       # SOAP DATA TYPE: Catalog_items_request
       # FLAGS, season_code, style, upc
-      catalog_information_request_xml = Stellae::Xml::CatalogInformationRequestBuilder.new.xml
-      request_xml = [user_xml, catalog_information_request_xml].join
+      catalog_information_request_xml = Stellae::Xml::CatalogInformationRequestBuilder.new(
+        flags: request.flags,
+        season_code: request.season_code,
+        style: request.style,
+        upc: request.upc
+      ).xml
+
+      request_xml = [
+        user_xml,
+        catalog_information_request_xml
+      ].join
 
       response = client.call(
         :get_catalog_information,

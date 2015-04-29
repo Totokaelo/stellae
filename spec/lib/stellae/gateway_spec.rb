@@ -27,7 +27,7 @@ describe Stellae::Gateway do
 
   describe '#import_line_list' do
     let(:hat_line_list_row) {
-      llr = Stellae::Request::LineListRow.new
+      llr = Stellae::Types::LineListRow.new
       llr.season_code = 'SS15'
       llr.upc = 'tktest0001'
       llr.description = 'cool hat'

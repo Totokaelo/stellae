@@ -10,7 +10,7 @@ describe Stellae::Xml::LineListRowBuilder do
   let(:content) { nil }
 
   let(:line_list_row) {
-    llr = Stellae::Request::LineListRow.new
+    llr = Stellae::Types::LineListRow.new
     llr.season_code = season_code
     llr.upc = upc
     llr.description = description
