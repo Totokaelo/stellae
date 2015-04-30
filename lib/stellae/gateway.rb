@@ -92,10 +92,10 @@ module Stellae
     def import_line_list(request)
       line_list_rows_xml = request.line_list_rows.map do |line_list_row|
         Stellae::Xml::LineListRowBuilder.new(line_list_row).xml
-      end
+      end.join('')
 
       collection_xml = Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml).xml
-      request_xml = [user_xml, catalog_information_request_xml].join
+      request_xml = [user_xml, collection_xml].join
 
       response = client.call(
         :import_line_list,

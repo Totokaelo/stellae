@@ -28,23 +28,45 @@ describe Stellae::Gateway do
   describe '#import_line_list' do
     let(:hat_line_list_row) {
       llr = Stellae::Types::LineListRow.new
-      llr.season_code = 'SS15'
       llr.upc = 'tktest0001'
       llr.description = 'cool hat'
       llr.style = 'black ballcap'
       llr.color_code = '001'
       llr.size_code = '0'
+      llr.activity = 'Maison Martin Margiela'
+      llr.activity_code = 123
+      llr.alternate_code = nil
+      llr.color = 'Black'
+      llr.content = nil
+      llr.country_of_origin = 'US'
+
+      llr.currency_code = 'USD'
+      llr.cost = 100
+      llr.retail_price = 150
+      llr.wholesale_price = 100
+
+      llr.fabric_code = nil
+      llr.htscode = nil
+      llr.imageurl = 'http://totokaelo.com/'
+      llr.price_group = 'ghi' # wtf is this
+      llr.season_code = '33'
+
+      llr.size = 'One Size'
+      llr.size_code = 'OS'
+      llr.size_order = 1
 
       llr
     }
 
     let(:import_line_list_request) {
-      Stellae::Request::ImportLineListRequest.new([
-        hat_line_list_row
-      ])
+      Stellae::Request::ImportLineListRequest.new(
+        line_list_rows: [
+          hat_line_list_row
+        ]
+      )
     }
 
-    xit 'returns success' do
+    it 'returns success' do
       response = subject.import_line_list(
         import_line_list_request
       )
