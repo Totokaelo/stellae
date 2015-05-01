@@ -74,4 +74,24 @@ describe Stellae::Gateway do
       expect(response.success?).to be true
     end
   end
+
+  describe '#new_order_entry', :focus do
+    let(:order_detail) {
+      Stellae::Types::OrderDetail.new
+    }
+
+    let(:order) {
+      Stellae::Types::Order.new
+    }
+
+    let(:order_entry_request) {
+      Stellae::Request::NewOrderEntryRequest.new(order: order)
+    }
+
+    it 'returns success' do
+      response = subject.new_order_entry(order_entry_request)
+
+      expect(response.success?).to be true
+    end
+  end
 end

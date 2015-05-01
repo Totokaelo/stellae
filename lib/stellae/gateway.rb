@@ -5,8 +5,12 @@ require 'stellae/status_codes'
 
 require 'stellae/request/catalog_information_request'
 require 'stellae/request/import_line_list_request'
+require 'stellae/request/new_order_entry_request'
 
+require 'stellae/types/base'
 require 'stellae/types/line_list_row'
+require 'stellae/types/order'
+require 'stellae/types/order_detail'
 
 require 'stellae/xml'
 require 'stellae/xml/fragment_builder'
@@ -14,6 +18,7 @@ require 'stellae/xml/user_builder'
 require 'stellae/xml/catalog_information_request_builder'
 require 'stellae/xml/line_list_row_builder'
 require 'stellae/xml/line_list_rows_builder'
+require 'stellae/xml/order_header_new_builder'
 
 require 'stellae/response'
 require 'stellae/response_parser'
@@ -23,7 +28,7 @@ module Stellae
   # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?wsdl=wsdl0
 
   # Message transport definitions, including their insane shorthand entity names
-  # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?xsd=xsd3
+  # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?xsd=xsd0
 
   # Moar complex types
   # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?xsd=xsd2
@@ -46,8 +51,6 @@ module Stellae
     end
 
     def get_catalog_information(request)
-      # SOAP DATA TYPE: Catalog_items_request
-      # FLAGS, season_code, style, upc
       catalog_information_request_xml = Stellae::Xml::CatalogInformationRequestBuilder.new(
         flags: request.flags,
         season_code: request.season_code,
@@ -111,10 +114,28 @@ module Stellae
       )
     end
 
-    def new_order_entry
-      # The purpose of this method is to create an order on the
-      # Stellae system to allow the fulfillment of the order.
-      raise NotImplementedError
+    def new_order_entry(request)
+      new_order_header_xml = Stellae::Xml::OrderHeaderNewBuilder.new(
+        order: request.order
+      ).xml
+
+      request_xml = [
+        user_xml,
+        new_order_header_xml
+      ].join
+
+      response = client.call(
+        :new_order_entry,
+        attributes: default_request_attributes,
+        message: request_xml
+      )
+
+      response_parser = Stellae::ResponseParser.new(response)
+
+      Response.new(
+        request: request,
+        status: response_parser.status
+      )
     end
 
     def purchase_order_receipt
