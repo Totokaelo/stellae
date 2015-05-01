@@ -1,51 +1,44 @@
 require 'spec_helper'
 
 describe Stellae::Xml::FragmentBuilder do
-  describe 'subclasses' do
-    subject do
-      class TestClass < described_class
-        string :b
-        string :a
+  let(:object) {
+    double(
+      'myobject',
+      attribute_keys: [:attr1],
+      node_name: 'myobject',
+      get_attribute: nil,
+      get_attribute_type: nil
+    )
+  }
 
-        decimal :z
-        decimal :y
-      end
+  subject { described_class.new(object) }
 
-      TestClass
+  describe '#xml' do
+    let(:xml) { subject.xml }
+
+    it 'should report values' do
+      expect(object).to receive(:get_attribute).
+        with(:attr1).
+        and_return('joe')
+
+      expect(xml).to include('<a:attr1>joe</a:attr1>')
     end
 
-    describe "::alphabetized_keys" do
-      it 'should alphabetize the keys' do
-        expect(subject.alphabetized_keys).to eq([:a, :b, :y, :z])
-      end
+    it 'should report nil for nil strings' do
+      expect(object).to receive(:get_attribute_type).
+        with(:attr1).
+        and_return(:string)
+
+      expect(xml).to include("<a:attr1 i:nil=\"true\"/>")
     end
 
-    let(:instance) {
-      subject.new(
-        a: 'hello',
-        y: 123
-      )
-    }
+    it 'should report 0 for nil decimals' do
+      expect(object).to receive(:get_attribute).with(:attr1)
+      expect(object).to receive(:get_attribute_type).
+        with(:attr1).
+        and_return(:decimal)
 
-    describe '#xml' do
-      let(:xml) { instance.xml }
-
-      it 'should report values' do
-        expect(xml).to include("<a:a>hello</a:a>")
-      end
-
-      it 'should report nil for nil strings' do
-        expect(xml).to include("<a:b i:nil=\"true\"/>")
-      end
-
-      it 'should report 0 for nil decimals' do
-        expect(xml).to include("<a:z>0</a:z>")
-      end
-
-      it 'should call ::alphabetized_keys' do
-        expect(subject).to receive(:alphabetized_keys).and_return([:a, :b, :y, :z])
-        xml
-      end
+      expect(xml).to include("<a:attr1>0</a:attr1>")
     end
   end
 end
