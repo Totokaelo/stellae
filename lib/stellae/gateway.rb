@@ -13,13 +13,6 @@ require 'stellae/types/order'
 require 'stellae/types/order_detail'
 
 require 'stellae/xml'
-require 'stellae/xml/fragment_builder'
-require 'stellae/xml/user_builder'
-require 'stellae/xml/catalog_information_request_builder'
-require 'stellae/xml/line_list_row_builder'
-require 'stellae/xml/line_list_rows_builder'
-require 'stellae/xml/order_header_new_builder'
-
 require 'stellae/response'
 require 'stellae/response_parser'
 
@@ -51,29 +44,8 @@ module Stellae
     end
 
     def get_catalog_information(request)
-      catalog_information_request_xml = Stellae::Xml::CatalogInformationRequestBuilder.new(
-        flags: request.flags,
-        season_code: request.season_code,
-        style: request.style,
-        upc: request.upc
-      ).xml
-
-      request_xml = [
-        user_xml,
-        catalog_information_request_xml
-      ].join
-
-      response = client.call(
-        :get_catalog_information,
-        attributes: default_request_attributes,
-        message: request_xml
-      )
-
-      response_parser = Stellae::ResponseParser.new(response)
-
-      Response.new(
-        request: request,
-        status: response_parser.status
+      call_endpoint_with_request(
+        :get_catalog_information, request
       )
     end
 
@@ -93,48 +65,16 @@ module Stellae
     end
 
     def import_line_list(request)
-      line_list_rows_xml = request.line_list_rows.map do |line_list_row|
-        Stellae::Xml::LineListRowBuilder.new(line_list_row).xml
-      end.join('')
-
-      collection_xml = Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml).xml
-      request_xml = [user_xml, collection_xml].join
-
-      response = client.call(
+      call_endpoint_with_request(
         :import_line_list,
-        attributes: default_request_attributes,
-        message: request_xml
-      )
-
-      response_parser = Stellae::ResponseParser.new(response)
-
-      Response.new(
-        request: request,
-        status: response_parser.status
+        request
       )
     end
 
     def new_order_entry(request)
-      new_order_header_xml = Stellae::Xml::OrderHeaderNewBuilder.new(
-        order: request.order
-      ).xml
-
-      request_xml = [
-        user_xml,
-        new_order_header_xml
-      ].join
-
-      response = client.call(
+      call_endpoint_with_request(
         :new_order_entry,
-        attributes: default_request_attributes,
-        message: request_xml
-      )
-
-      response_parser = Stellae::ResponseParser.new(response)
-
-      Response.new(
-        request: request,
-        status: response_parser.status
+        request
       )
     end
 
@@ -193,17 +133,34 @@ module Stellae
       "#{@endpoint_url}?wsdl"
     end
 
-    def user_xml
-      @user_xml ||= Stellae::Xml::UserBuilder.new(
-        username: username,
-        password: password
-      ).xml
-    end
-
     def default_request_attributes
       {
         xmlns: 'SII'
       }
+    end
+
+    def xml_for_request(request)
+      Stellae::Xml.for_user_and_request(
+        username,
+        password,
+        request
+      )
+    end
+
+    def call_endpoint_with_request(endpoint_name, request)
+      response = client.call(
+        endpoint_name,
+        attributes: default_request_attributes,
+        message: xml_for_request(request)
+      )
+
+      response_parser = Stellae::ResponseParser.new(response)
+
+      Response.new(
+        request: request,
+        status: response_parser.status
+      )
+
     end
   end
 end
