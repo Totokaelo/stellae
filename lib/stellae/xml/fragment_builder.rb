@@ -8,8 +8,8 @@ module Stellae
       def xml
         xml_builder = Builder::XmlMarkup.new
 
-        if object_node_name
-          xml_builder.tag!(object_node_name, namespaces) do
+        if object_root_name
+          xml_builder.tag!(object_root_name, namespaces) do
             write_attributes(xml_builder)
           end
         else
@@ -22,8 +22,8 @@ module Stellae
 
       protected
 
-      def object_node_name
-        @object.node_name
+      def object_root_name
+        @object.root_name
       end
 
       def object_attribute_keys

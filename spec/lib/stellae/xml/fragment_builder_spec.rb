@@ -5,7 +5,7 @@ describe Stellae::Xml::FragmentBuilder do
     double(
       'myobject',
       attribute_keys: [:attr1],
-      node_name: 'myobject',
+      root_name: 'myobject',
       get_attribute: nil,
       get_attribute_type: nil
     )
