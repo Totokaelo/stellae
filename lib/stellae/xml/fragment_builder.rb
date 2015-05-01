@@ -1,54 +1,52 @@
 module Stellae
   module Xml
     class FragmentBuilder
-      class << self
-        @@attributes = {}
-
-        def string(key)
-          define_writers(key, :string)
-        end
-
-        def decimal(key)
-          define_writers(key, :decimal)
-        end
-
-        def define_writers(key, type)
-          @@attributes[key] = type
-
-          # define key=(value)
-          attr_accessor key
-        end
-
-        def attribute_type(key)
-          @@attributes[key]
-        end
-
-        def alphabetized_keys
-          @@attributes.keys.sort
-        end
-      end
-
-      def initialize(argument_hash = {})
-        argument_hash.each_key do |k|
-          send("#{k}=", argument_hash[k])
-        end
+      def initialize(object)
+        @object = object
       end
 
       def xml
         xml_builder = Builder::XmlMarkup.new
 
-        self.class.alphabetized_keys.each do |key|
-          write_tag(
-            xml_builder,
-            key,
-            value_or_default(key)
-          )
+        if object_node_name
+          xml_builder.tag!(object_node_name, namespaces) do
+            write_attributes(xml_builder)
+          end
+        else
+          write_attributes(xml_builder)
         end
+
 
         xml_builder.target!
       end
 
       protected
+
+      def object_node_name
+        @object.node_name
+      end
+
+      def object_attribute_keys
+        @object.attribute_keys
+      end
+
+      def object_get_attribute(key)
+        @object.get_attribute(key)
+      end
+
+      def object_get_attribute_type(key)
+        @object.get_attribute_type(key)
+      end
+
+      def write_attributes(xml_builder)
+        each_attribute do |key, value|
+          write_tag(
+            xml_builder,
+            key,
+            value
+          )
+        end
+      end
 
       def write_tag(x, tag_name, value)
         if value.nil?
@@ -58,12 +56,28 @@ module Stellae
         end
       end
 
+      def each_attribute
+        alphabetized_keys.each do |key|
+          yield(key, value_or_default(key))
+        end
+      end
+
+      def alphabetized_keys
+        object_attribute_keys.sort
+      end
+
       def value_or_default(key)
-        value = instance_variable_get("@#{key}")
+        value = object_get_attribute(key)
 
-        return value unless value.nil?
+        unless value.nil?
+          value
+        else
+          default(object_get_attribute_type(key))
+        end
+      end
 
-        if @@attributes[key] == :decimal
+      def default(type)
+        if type == :decimal
           0
         else
           nil
