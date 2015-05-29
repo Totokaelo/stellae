@@ -28,33 +28,33 @@ module Stellae
 
     private
 
+    def self.user_xml(username, password)
+      user_xml = Stellae::Xml::UserBuilder.new(
+        username: username,
+        password: password
+      ).xml
+    end
+
     def self.request_xml(request)
       builder = case request
-      when Stellae::Request::CatalogInformationRequest
+      when Stellae::Requests::GetCatalogInformationRequest
         Stellae::Xml::CatalogInformationRequestBuilder.new(
           flags: request.flags,
           season_code: request.season_code,
           style: request.style,
           upc: request.upc
         )
-      when Stellae::Request::ImportLineListRequest
+      when Stellae::Requests::ImportLineListRequest
         line_list_rows_xml = request.line_list_rows.map do |line_list_row|
           Stellae::Xml::LineListRowBuilder.new(line_list_row).xml
         end.join('')
 
         Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml)
-      when Stellae::Request::NewOrderEntryRequest
+      when Stellae::Requests::NewOrderEntryRequest
         Stellae::Xml::OrderHeaderNewBuilder.new(order: request.order)
       end
 
       builder.xml
-    end
-
-    def self.user_xml(username, password)
-      user_xml = Stellae::Xml::UserBuilder.new(
-        username: username,
-        password: password
-      ).xml
     end
   end
 end

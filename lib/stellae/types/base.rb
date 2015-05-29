@@ -13,8 +13,20 @@ module Stellae
           define_writers(key, :string)
         end
 
+        def datetime(key)
+          define_writers(key, :datetime)
+        end
+
         def decimal(key)
           define_writers(key, :decimal)
+        end
+
+        def entity(key)
+          define_writers(key, :entity)
+        end
+
+        def collection(key)
+          define_writers(key, :collection)
         end
 
         def attribute_type(key)

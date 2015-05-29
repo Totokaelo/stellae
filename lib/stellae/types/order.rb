@@ -13,6 +13,8 @@ module Stellae
       string :customer_address_country
       string :customer_address_state
       string :customer_address_zip
+
+      string :customer_name
       string :customer_code
       string :customer_po
       string :customer_telephone
@@ -47,20 +49,33 @@ module Stellae
       string :misc2_reason
 
       string :order_id
+
+      # Must be "OO" or "CM"
+      # OO: New Order
+      # CM: Order Return
       string :order_type
 
       string :service
 
-      decimal :shippping_details
+      decimal :shipping_fees
       decimal :taxes
       decimal :total_amount
 
+      # URLencoded Invoice Url
       string :user1
       string :user2
       string :user3
       string :user4
       string :user5
       string :warehouse
+
+      collection :order_details
+
+      def initialize(init_hash = {})
+        super(init_hash)
+
+        @order_type = 'OO'
+      end
     end
   end
 end

@@ -48,11 +48,17 @@ module Stellae
         end
       end
 
-      def write_tag(x, tag_name, value)
+      def tag_name(object_key)
+        "#{namespace}:#{object_key}"
+      end
+
+      def write_tag(x, key, value)
+        tag = tag_name(key)
+
         if value.nil?
-          x.tag! "#{namespace}:#{tag_name}", 'i:nil' => true
+          x.tag! tag, 'i:nil' => true
         else
-          x.tag! "#{namespace}:#{tag_name}", value
+          x.tag! tag, value
         end
       end
 
@@ -63,7 +69,8 @@ module Stellae
       end
 
       def alphabetized_keys
-        object_attribute_keys.sort
+        # Case-insensitive alphabetization
+        object_attribute_keys.sort { |a, b| a.downcase <=> b.downcase }
       end
 
       def value_or_default(key)

@@ -7,10 +7,6 @@ module Stellae
       string :style
       string :season_code
       string :flags
-
-      def catalog_information_request?
-        true
-      end
     end
   end
 end

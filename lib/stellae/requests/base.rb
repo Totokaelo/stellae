@@ -9,15 +9,9 @@ module Stellae
         # endpoint_name::
         #  A string that represents the endpoint the Request will hit.
         #
-        def endpoint_name(endpoint_name)
-          @@endpoint_name = endpoint_name
+        def endpoint_name(subclass_endpoint_name)
+          define_method(:endpoint_name) { subclass_endpoint_name }
         end
-      end
-
-      # Gets the name of the webservice endpoint this Request corresponds to.
-      #
-      def endpoint_name
-        @@endpoint_name
       end
     end
   end

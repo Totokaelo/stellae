@@ -3,9 +3,6 @@ require 'savon'
 
 require 'stellae/status_codes'
 
-require 'stellae/request/import_line_list_request'
-require 'stellae/request/new_order_entry_request'
-
 require 'stellae/types/base'
 require 'stellae/types/line_list_row'
 require 'stellae/types/order'
@@ -13,6 +10,8 @@ require 'stellae/types/order_detail'
 
 require 'stellae/requests/base'
 require 'stellae/requests/get_catalog_information_request'
+require 'stellae/requests/import_line_list_request'
+require 'stellae/requests/new_order_entry_request'
 
 require 'stellae/xml'
 require 'stellae/response'
@@ -70,21 +69,6 @@ module Stellae
     def get_shipment_information(request)
       call_endpoint_with_request(
         :get_shipment_information,
-        request
-      )
-    end
-
-    def import_line_list(request)
-      call_endpoint_with_request(
-        :import_line_list,
-        request
-      )
-    end
-
-    # Registers a new Order with Stellae
-    def new_order_entry(request)
-      call_endpoint_with_request(
-        :new_order_entry,
         request
       )
     end
