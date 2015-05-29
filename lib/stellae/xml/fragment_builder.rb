@@ -1,3 +1,6 @@
+# for iso8601
+require 'time'
+
 module Stellae
   module Xml
     class FragmentBuilder
@@ -79,19 +82,28 @@ module Stellae
 
       def value_or_default(key)
         value = object_get_attribute(key)
+        default = default(object_get_attribute_type(key))
 
-        unless value.nil?
-          value
-        else
-          default(object_get_attribute_type(key))
-        end
+        present(value || default)
       end
 
       def default(type)
-        if type == :decimal
+        case type
+        when :decimal
           0
+        when :datetime
+          Time.now
         else
           nil
+        end
+      end
+
+      def present(value)
+        if value.is_a?(Time)
+          value.iso8601
+        else
+          # nothing to do
+          value
         end
       end
 
