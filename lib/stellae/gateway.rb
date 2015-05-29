@@ -3,7 +3,6 @@ require 'savon'
 
 require 'stellae/status_codes'
 
-require 'stellae/request/catalog_information_request'
 require 'stellae/request/import_line_list_request'
 require 'stellae/request/new_order_entry_request'
 
@@ -12,24 +11,16 @@ require 'stellae/types/line_list_row'
 require 'stellae/types/order'
 require 'stellae/types/order_detail'
 
+require 'stellae/requests/base'
+require 'stellae/requests/get_catalog_information_request'
+
 require 'stellae/xml'
 require 'stellae/response'
 require 'stellae/response_parser'
 
 module Stellae
-  # Operation contracts
-  # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?wsdl=wsdl0
-
-  # Message transport definitions, including their insane shorthand entity names
-  # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?xsd=xsd0
-
-  # Moar complex types
-  # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?xsd=xsd2
-
-  # These are pretty un-useful, but for completion's sake...
-  # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?xsd=xsd1
-  # https://webservice.stellae.us/SIIServices_multi/SIIService.svc?xsd=xsd3
-
+  # Encapsulates all the weirdness of a Stellae request
+  #
   class Gateway
     def initialize(
       endpoint_url:,
@@ -43,25 +34,44 @@ module Stellae
       @logger = logger
     end
 
-    def get_catalog_information(request)
-      call_endpoint_with_request(
-        :get_catalog_information, request
+    # Executes a Stellae request
+    #
+    # == Parameters::
+    # request::
+    #   A Stellae::Request
+    #
+    # == Returns::
+    # response::
+    #   A Stellae::Response
+    #
+    def execute(request)
+      request_xml = Stellae::Xml.for_user_and_request(username, password, request)
+
+      savon_response = client.call(
+        request.endpoint_name,
+        attributes: default_request_attributes,
+        message: request_xml
       )
+
+      savon_response
     end
 
+    # This returns the current on hand inventory quantity
+    # less any orders that have been received but not picked.
+    # It currently does not return any products that have zero on hand inventory.
+    # Please note that the array of inventory values has an unknown limit, but less than 100.
     def get_inventory_on_hand
-      # This returns the current on hand inventory quantity
-      # less any orders that have been received but not picked.
-      # It currently does not return any products that have zero on hand inventory.
-      # Please note that the array of inventory values has an unknown limit, but less than 100.
       raise NotImplementedError
     end
 
-    def get_shipment_information
-      # This supplies information about shipment and returns.
-      # Please note, due to the heavy processing required by this request,
-      # we limit to a maximum of 3 days if you don’t specify an order number.
-      raise NotImplementedError
+    # This supplies information about shipment and returns.
+    # Please note, due to the heavy processing required by this request,
+    # we limit to a maximum of 3 days if you don’t specify an order number.
+    def get_shipment_information(request)
+      call_endpoint_with_request(
+        :get_shipment_information,
+        request
+      )
     end
 
     def import_line_list(request)
@@ -71,6 +81,7 @@ module Stellae
       )
     end
 
+    # Registers a new Order with Stellae
     def new_order_entry(request)
       call_endpoint_with_request(
         :new_order_entry,
@@ -137,30 +148,6 @@ module Stellae
       {
         xmlns: 'SII'
       }
-    end
-
-    def xml_for_request(request)
-      Stellae::Xml.for_user_and_request(
-        username,
-        password,
-        request
-      )
-    end
-
-    def call_endpoint_with_request(endpoint_name, request)
-      response = client.call(
-        endpoint_name,
-        attributes: default_request_attributes,
-        message: xml_for_request(request)
-      )
-
-      response_parser = Stellae::ResponseParser.new(response)
-
-      Response.new(
-        request: request,
-        status: response_parser.status
-      )
-
     end
   end
 end
