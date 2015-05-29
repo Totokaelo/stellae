@@ -2,11 +2,8 @@ module Stellae
   module Types
     class Base
       class << self
-        @@attributes = {}
-        @@root_name = nil
-
         def root_name(key)
-          @@root_name = key
+          define_method(:root_name) { key }
         end
 
         def string(key)
@@ -30,13 +27,17 @@ module Stellae
         end
 
         def attribute_type(key)
-          @@attributes[key]
+          attributes[key]
+        end
+
+        def attributes
+          @attributes ||= {}
         end
 
         private
 
         def define_writers(key, type)
-          @@attributes[key] = type
+          attributes[key] = type
 
           # define key=(value)
           attr_accessor key
@@ -51,12 +52,8 @@ module Stellae
         end
       end
 
-      def root_name
-        @@root_name
-      end
-
       def attribute_keys
-        @@attributes.keys
+        self.class.attributes.keys
       end
 
       def get_attribute(key)
@@ -64,7 +61,7 @@ module Stellae
       end
 
       def get_attribute_type(key)
-        @@attributes[key]
+        self.class.attributes[key]
       end
     end
   end

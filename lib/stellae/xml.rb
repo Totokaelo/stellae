@@ -1,6 +1,5 @@
 require 'stellae/xml/fragment_builder'
 require 'stellae/xml/user_builder'
-require 'stellae/xml/catalog_information_request_builder'
 require 'stellae/xml/line_list_row_builder'
 require 'stellae/xml/line_list_rows_builder'
 require 'stellae/xml/order_header_new_builder'
@@ -38,12 +37,14 @@ module Stellae
     def self.request_xml(request)
       builder = case request
       when Stellae::Requests::GetCatalogInformationRequest
-        Stellae::Xml::CatalogInformationRequestBuilder.new(
-          flags: request.flags,
-          season_code: request.season_code,
-          style: request.style,
-          upc: request.upc
-        )
+        #Stellae::Xml::CatalogInformationRequestBuilder.new(
+        #  flags: request.flags,
+        #  season_code: request.season_code,
+        #  style: request.style,
+        #  upc: request.upc
+        #)
+
+        Stellae::Xml::FragmentBuilder.new(request)
       when Stellae::Requests::ImportLineListRequest
         line_list_rows_xml = request.line_list_rows.map do |line_list_row|
           Stellae::Xml::LineListRowBuilder.new(line_list_row).xml

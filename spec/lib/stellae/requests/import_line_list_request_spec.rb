@@ -43,4 +43,10 @@ describe Stellae::Requests::ImportLineListRequest do
     response = gateway.execute(subject)
     expect(response.success?).to be true
   end
+
+  describe '#root_name' do
+    it 'should be line_list_rows' do
+      expect(subject.root_name).to eq(:line_list_rows)
+    end
+  end
 end

@@ -5,6 +5,8 @@ module Stellae
     class ImportLineListRequest < Base
       endpoint_name :import_line_list
 
+      root_name :line_list_rows
+
       collection :line_list_rows
     end
   end
