@@ -1,4 +1,5 @@
 require 'stellae/xml/fragment_builder'
+require 'stellae/xml/get_inventory_request_builder'
 require 'stellae/xml/user_builder'
 require 'stellae/xml/line_list_row_builder'
 require 'stellae/xml/line_list_rows_builder'
@@ -44,6 +45,8 @@ module Stellae
         Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml)
       when Stellae::Requests::NewOrderEntryRequest
         Stellae::Xml::OrderHeaderNewBuilder.new(order: request.order)
+      when Stellae::Requests::GetInventoryOnHandRequest
+        Stellae::Xml::GetInventoryRequestBuilder.new(request)
       else
         Stellae::Xml::FragmentBuilder.new(request)
       end

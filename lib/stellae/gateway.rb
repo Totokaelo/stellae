@@ -7,9 +7,11 @@ require 'stellae/types/base'
 require 'stellae/types/line_list_row'
 require 'stellae/types/order'
 require 'stellae/types/order_detail'
+require 'stellae/types/upc_inventory_request'
 
 require 'stellae/requests/base'
 require 'stellae/requests/get_catalog_information_request'
+require 'stellae/requests/get_inventory_on_hand_request'
 require 'stellae/requests/import_line_list_request'
 require 'stellae/requests/new_order_entry_request'
 

@@ -37,9 +37,10 @@ module Stellae
         private
 
         def define_writers(key, type)
+          # Assign Type
           attributes[key] = type
 
-          # define key=(value)
+          # Define Accessor
           attr_accessor key
         end
       end
@@ -62,6 +63,10 @@ module Stellae
 
       def get_attribute_type(key)
         self.class.attributes[key]
+      end
+
+      def root_name
+        nil
       end
     end
   end

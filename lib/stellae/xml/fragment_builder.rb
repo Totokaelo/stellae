@@ -1,15 +1,19 @@
 module Stellae
   module Xml
     class FragmentBuilder
-      def initialize(object)
+      def initialize(object, write_namespace_on_root: true)
         @object = object
+        @write_namespace_on_root = write_namespace_on_root
       end
 
       def xml
         xml_builder = Builder::XmlMarkup.new
 
         if object_root_name
-          xml_builder.tag!(object_root_name, namespaces) do
+          xml_builder.tag!(
+            object_root_name,
+            @write_namespace_on_root ? namespaces : nil
+          ) do
             write_attributes(xml_builder)
           end
         else
