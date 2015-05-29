@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Stellae::Requests::GetInventoryOnHandRequest do
+
   subject { described_class.new }
 
   describe '#endpoint_name' do

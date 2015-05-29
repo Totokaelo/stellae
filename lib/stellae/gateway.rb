@@ -12,6 +12,7 @@ require 'stellae/types/upc_inventory_request'
 require 'stellae/requests/base'
 require 'stellae/requests/get_catalog_information_request'
 require 'stellae/requests/get_inventory_on_hand_request'
+require 'stellae/requests/get_shipment_information'
 require 'stellae/requests/import_line_list_request'
 require 'stellae/requests/new_order_entry_request'
 
@@ -55,14 +56,6 @@ module Stellae
       )
 
       savon_response
-    end
-
-    # This returns the current on hand inventory quantity
-    # less any orders that have been received but not picked.
-    # It currently does not return any products that have zero on hand inventory.
-    # Please note that the array of inventory values has an unknown limit, but less than 100.
-    def get_inventory_on_hand
-      raise NotImplementedError
     end
 
     # This supplies information about shipment and returns.
