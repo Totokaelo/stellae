@@ -58,16 +58,6 @@ module Stellae
       savon_response
     end
 
-    # This supplies information about shipment and returns.
-    # Please note, due to the heavy processing required by this request,
-    # we limit to a maximum of 3 days if you don’t specify an order number.
-    def get_shipment_information(request)
-      call_endpoint_with_request(
-        :get_shipment_information,
-        request
-      )
-    end
-
     def purchase_order_receipt
       # This is to find out what has been received.
       raise NotImplementedError
@@ -80,20 +70,20 @@ module Stellae
       raise NotImplementedError
     end
 
-    def new_purchase_order_entry
-      # Per Donald, don't implement
-      raise NotImplementedError
+    private
+
+    attr_reader :logger,
+      :username,
+      :password
+
+    def wsdl
+      "#{@endpoint_url}?wsdl"
     end
 
-
-    def new_delivery_ticket
-      # Per Donald, don't implement
-      raise NotImplementedError
-    end
-
-    def import_invoice
-      # Per Donald, don't implement
-      raise NotImplementedError
+    def default_request_attributes
+      {
+        xmlns: 'SII'
+      }
     end
 
     def client
@@ -111,22 +101,6 @@ module Stellae
         # prevent conversion to camelCase
         convert_request_keys_to :none
       end
-    end
-
-    private
-
-    attr_reader :logger,
-      :username,
-      :password
-
-    def wsdl
-      "#{@endpoint_url}?wsdl"
-    end
-
-    def default_request_attributes
-      {
-        xmlns: 'SII'
-      }
     end
   end
 end
