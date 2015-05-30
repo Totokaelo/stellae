@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+  <s:Header>
+    <a:Action s:mustUnderstand="1">SII/ISIIService/get_shipment_informationResponse</a:Action>
+    <ActivityId xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics" CorrelationId="c543c1bd-d6ac-4345-9f3a-30086aaa051c">b39ce332-e60e-46b3-a46b-2f0ef5ec48da</ActivityId>
+    <a:RelatesTo>urn:uuid:45e68c0f-b768-4c87-8c61-46b18eb6da08</a:RelatesTo>
+  </s:Header>
+  <s:Body>
+    <get_shipment_informationResponse xmlns="SII">
+      <get_shipment_informationResult xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:shipments>
+          <b:shipment_status>
+            <b:cartons>
+              <b:shipment_cartons>
+                <b:CARRIER>US POSTAL</b:CARRIER>
+                <b:RETURN_TRACKING i:nil="true"/>
+                <b:SERVICE>08</b:SERVICE>
+                <b:TRACKING>9405511899560437432627</b:TRACKING>
+                <b:UCC128>0</b:UCC128>
+                <b:carton_items>
+                  <b:Order_Detail_New>
+                    <b:FLAGS i:nil="true"/>
+                    <b:PRICE>99</b:PRICE>
+                    <b:QUANTITY>1</b:QUANTITY>
+                    <b:SIZE i:nil="true"/>
+                    <b:SKU>9999999999990</b:SKU>
+                  </b:Order_Detail_New>
+                  <b:Order_Detail_New>
+                    <b:FLAGS i:nil="true"/>
+                    <b:PRICE>99</b:PRICE>
+                    <b:QUANTITY>1</b:QUANTITY>
+                    <b:SIZE i:nil="true"/>
+                    <b:SKU>9999999999991</b:SKU>
+                  </b:Order_Detail_New>
+                  <b:Order_Detail_New>
+                    <b:FLAGS i:nil="true"/>
+                    <b:PRICE>99</b:PRICE>
+                    <b:QUANTITY>1</b:QUANTITY>
+                    <b:SIZE i:nil="true"/>
+                    <b:SKU>9999999999992</b:SKU>
+                  </b:Order_Detail_New>
+                  <b:Order_Detail_New>
+                    <b:FLAGS i:nil="true"/>
+                    <b:PRICE>99</b:PRICE>
+                    <b:QUANTITY>1</b:QUANTITY>
+                    <b:SIZE i:nil="true"/>
+                    <b:SKU>9999999999993</b:SKU>
+                  </b:Order_Detail_New>
+                  <b:Order_Detail_New>
+                    <b:FLAGS i:nil="true"/>
+                    <b:PRICE>99</b:PRICE>
+                    <b:QUANTITY>1</b:QUANTITY>
+                    <b:SIZE i:nil="true"/>
+                    <b:SKU>9999999999994</b:SKU>
+                  </b:Order_Detail_New>
+                </b:carton_items>
+              </b:shipment_cartons>
+            </b:cartons>
+            <b:invoice_date>2013-10-01T00:00:00</b:invoice_date>
+            <b:invoice_number>1100017346</b:invoice_number>
+            <b:invoice_type>IN</b:invoice_type>
+            <b:order_id>1100017346</b:order_id>
+          </b:shipment_status>
+        </b:shipments>
+        <b:status>0001</b:status>
+      </get_shipment_informationResult>
+    </get_shipment_informationResponse>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header>
+    <ActivityId xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics" CorrelationId="b6865258-5c23-4c0a-855c-123f0ba834b9">0c6774b3-b103-43f3-ad9c-aca022e21590</ActivityId>
+  </s:Header>
+  <s:Body>
+    <new_order_entryResponse xmlns="SII">
+      <new_order_entryResult xmlns:a="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:detail_status xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays" i:nil="true"/>
+        <a:sii_order_number>2813</a:sii_order_number>
+        <a:status>0001</a:status>
+      </new_order_entryResult>
+    </new_order_entryResponse>
+  </s:Body>
+</s:Envelope>

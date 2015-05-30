@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <new_order_entry xmlns="SII">
+      <user xmlns:a="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:user_name>EBORGOTEST</a:user_name>
+        <a:user_password>F6XV&amp;YegfbAW</a:user_password>
+      </user>
+      <ohn xmlns:a="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:CARRIER>FEDEX</a:CARRIER>
+        <a:CURRENCY>USD</a:CURRENCY>
+        <a:CUSTOMER_ADDRESS_1>5 Crosby st.</a:CUSTOMER_ADDRESS_1>
+        <a:CUSTOMER_ADDRESS_2/>
+        <a:CUSTOMER_ADDRESS_3/>
+        <a:CUSTOMER_ADDRESS_CITY>New York</a:CUSTOMER_ADDRESS_CITY>
+        <a:CUSTOMER_ADDRESS_COUNTRY>US</a:CUSTOMER_ADDRESS_COUNTRY>
+        <a:CUSTOMER_ADDRESS_STATE>NY</a:CUSTOMER_ADDRESS_STATE>
+        <a:CUSTOMER_ADDRESS_ZIP>10001</a:CUSTOMER_ADDRESS_ZIP>
+        <a:CUSTOMER_CODE/>
+        <a:CUSTOMER_NAME>Orlando Hall</a:CUSTOMER_NAME>
+        <a:CUSTOMER_TELEPHONE i:nil="true"/>
+        <a:DELIVERY_ADDRESS_1>8728 Pitkin ave.</a:DELIVERY_ADDRESS_1>
+        <a:DELIVERY_ADDRESS_2/>
+        <a:DELIVERY_ADDRESS_3/>
+        <a:DELIVERY_ADDRESS_CITY>Ozone Park</a:DELIVERY_ADDRESS_CITY>
+        <a:DELIVERY_ADDRESS_COUNTRY>US</a:DELIVERY_ADDRESS_COUNTRY>
+        <a:DELIVERY_ADDRESS_STATE>NY</a:DELIVERY_ADDRESS_STATE>
+        <a:DELIVERY_ADDRESS_ZIP>11417</a:DELIVERY_ADDRESS_ZIP>
+        <a:DELIVERY_FROM i:nil="true"/>
+        <a:DELIVERY_ID i:nil="true"/>
+        <a:DELIVERY_MESSAGE/>
+        <a:DELIVERY_NAME>Orlando Hall</a:DELIVERY_NAME>
+        <a:DELIVERY_TELEPHONE>718 718 
+7187</a:DELIVERY_TELEPHONE>
+        <a:DELIVERY_TO i:nil="true"/>
+        <a:DISCOUNT>0</a:DISCOUNT>
+        <a:EMAIL>alex@onerockwell.com</a:EMAIL>
+        <a:FREIGHT_ACCOUNT/>
+        <a:MISC1>0</a:MISC1>
+        <a:MISC1_REASON i:nil="true"/>
+        <a:MISC2>0</a:MISC2>
+        <a:MISC2_REASON i:nil="true"/>
+        <a:ORDER_ID>100000002a</a:ORDER_ID>
+        <a:ORDER_TYPE>OO</a:ORDER_TYPE>
+        <a:Order_Details>
+          <a:Order_Detail_New>
+            <a:FLAGS i:nil="true"/>
+            <a:PRICE>0</a:PRICE>
+            <a:QUANTITY>0</a:QUANTITY>
+            <a:SIZE i:nil="true"/>
+            <a:SKU>849085000198</a:SKU>
+          </a:Order_Detail_New>
+          <a:Order_Detail_New>
+            <a:FLAGS i:nil="true"/>
+            <a:PRICE>0</a:PRICE>
+            <a:QUANTITY>0</a:QUANTITY>
+            <a:SIZE i:nil="true"/>
+            <a:SKU>849085003267</a:SKU>
+          </a:Order_Detail_New>
+        </a:Order_Details>
+        <a:SERVICE>02</a:SERVICE>
+        <a:SHIPPPING_FEES>0</a:SHIPPPING_FEES>
+        <a:TAXES>43.97</a:TAXES>
+        <a:TOTAL_AMOUNT>650.02</a:TOTAL_AMOUNT>
+        <a:USER1 i:nil="true"/>
+        <a:USER2 i:nil="true"/>
+        <a:USER3 i:nil="true"/>
+        <a:USER4 i:nil="true"/>
+        <a:USER5 i:nil="true"/>
+        <a:WAREHOUSE i:nil="true"/>
+      </ohn>
+    </new_order_entry>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,68 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+  <s:Header>
+    <a:Action s:mustUnderstand="1">SII/ISIIService/import_line_list</a:Action>
+    <a:MessageID>urn:uuid:3976ec0e-757c-4961-8902-614979a85220</a:MessageID>
+    <a:ReplyTo>
+      <a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>
+    </a:ReplyTo>
+    <a:To s:mustUnderstand="1">https://www.stellae.us/webservices/SIIService.svc</a:To>
+  </s:Header>
+  <s:Body>
+    <import_line_list xmlns="SII">
+      <user xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:user_name>xxx</b:user_name>
+        <b:user_password>yyy</b:user_password>
+      </user>
+      <line_list_rows xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:Line_list_row>
+          <b:activity>Helmut</b:activity>
+          <b:activity_code>485</b:activity_code>
+          <b:alternate_code i:nil="true"/>
+          <b:color>Heather Grey</b:color>
+          <b:color_code>67</b:color_code>
+          <b:content i:nil="true"/>
+          <b:cost>35</b:cost>
+          <b:country_of_origin>US</b:country_of_origin>
+          <b:currency_code>USD</b:currency_code>
+          <b:description>Helmut Racer Tank</b:description>
+          <b:fabric_code i:nil="true"/>
+          <b:htscode>1234.55.66</b:htscode>
+          <b:imageurl>HTTP://WWW.STELLAE.US</b:imageurl>
+          <b:price_group>ghi</b:price_group>
+          <b:retail_price>85</b:retail_price>
+          <b:season_code>33</b:season_code>
+          <b:size>Petite</b:size>
+          <b:size_code>P</b:size_code>
+          <b:size_order>1</b:size_order>
+          <b:style>C04HW533</b:style>
+          <b:upc>THL533PF12_P</b:upc>
+          <b:wholesale_price>35</b:wholesale_price>
+        </b:Line_list_row>
+        <b:Line_list_row>
+          <b:activity>Vanessa Bruno Athe</b:activity>
+          <b:activity_code>179</b:activity_code>
+          <b:alternate_code>KVB155PF12_0</b:alternate_code>
+          <b:color>100multico</b:color>
+          <b:color_code>1455</b:color_code>
+          <b:content>def</b:content>
+          <b:cost>112</b:cost>
+          <b:country_of_origin>US</b:country_of_origin>
+          <b:currency_code>USD</b:currency_code>
+          <b:description>Vanessa Bruno Ath&#xE9; Two-Tone Cable Knit</b:description>
+          <b:fabric_code i:nil="true"/>
+          <b:htscode>9876.55.44</b:htscode>
+          <b:imageurl i:nil="true"/>
+          <b:price_group>NA</b:price_group>
+          <b:retail_price>258</b:retail_price>
+          <b:season_code>33</b:season_code>
+          <b:size>Other 0</b:size>
+          <b:size_code>0</b:size_code>
+          <b:size_order>1</b:size_order>
+          <b:style>2HAC03-A15585</b:style>
+          <b:upc>KVB155PF12_0</b:upc>
+          <b:wholesale_price>112</b:wholesale_price>
+        </b:Line_list_row>
+      </line_list_rows>
+    </import_line_list>
+  </s:Body>
+</s:Envelope>

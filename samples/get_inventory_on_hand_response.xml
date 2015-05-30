@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+  <s:Header>
+    <a:Action s:mustUnderstand="1">SII/ISIIService/get_inventory_on_handResponse</a:Action>
+    <ActivityId xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics" CorrelationId="2173af60-a813-410a-a39c-ab952933173f">fa9bd9cb-cd50-45b2-b2d0-7c8b313425f5</ActivityId>
+    <a:RelatesTo>urn:uuid:01a86a5e-0e02-4069-a17c-37113866e55c</a:RelatesTo>
+  </s:Header>
+  <s:Body>
+    <get_inventory_on_handResponse xmlns="SII">
+      <get_inventory_on_handResult xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:Inventory_values>
+          <b:UPC_Inventory_Response>
+            <b:lot> </b:lot>
+            <b:on_hand>1</b:on_hand>
+            <b:uom>EA</b:uom>
+            <b:upc>4444000014319</b:upc>
+            <b:warehouse>NYC</b:warehouse>
+          </b:UPC_Inventory_Response>
+          <b:UPC_Inventory_Response>
+            <b:lot> </b:lot>
+            <b:on_hand>6</b:on_hand>
+            <b:uom>EA</b:uom>
+            <b:upc>4444000091655</b:upc>
+            <b:warehouse>NYC</b:warehouse>
+          </b:UPC_Inventory_Response>
+        </b:Inventory_values>
+        <b:status>0001</b:status>
+      </get_inventory_on_handResult>
+    </get_inventory_on_handResponse>
+  </s:Body>
+</s:Envelope>

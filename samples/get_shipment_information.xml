@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+  <s:Header>
+    <a:Action s:mustUnderstand="1">SII/ISIIService/get_shipment_information</a:Action>
+    <a:MessageID>urn:uuid:45e68c0f-b768-4c87-8c61-46b18eb6da08</a:MessageID>
+    <a:ReplyTo>
+      <a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>
+    </a:ReplyTo>
+    <a:To s:mustUnderstand="1">https://www.stellae.us/webservices/SIIService.svc</a:To>
+  </s:Header>
+  <s:Body>
+    <get_shipment_information xmlns="SII">
+      <user xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:user_name>XXX</b:user_name>
+        <b:user_password>YYY</b:user_password>
+      </user>
+      <ohn xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:date_from>2013-10-01T00:00:00</b:date_from>
+        <b:date_to>2013-10-01T00:00:00</b:date_to>
+        <b:order_id>1100017346</b:order_id>
+      </ohn>
+    </get_shipment_information>
+  </s:Body>
+</s:Envelope>

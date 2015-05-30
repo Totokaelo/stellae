@@ -1,0 +1,15 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+  <s:Header>
+    <a:Action s:mustUnderstand="1">SII/ISIIService/import_line_listResponse</a:Action>
+    <ActivityId xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics" CorrelationId="573b5dd5-cbb8-4da8-a915-6d8f9d6dd7aa">3d0c0435-7bfc-4cab-b798-1301c13c6349</ActivityId>
+    <a:RelatesTo>urn:uuid:3976ec0e-757c-4961-8902-614979a85220</a:RelatesTo>
+  </s:Header>
+  <s:Body>
+    <import_line_listResponse xmlns="SII">
+      <import_line_listResult xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:Inventory_values i:nil="true"/>
+        <b:status>0001</b:status>
+      </import_line_listResult>
+    </import_line_listResponse>
+  </s:Body>
+</s:Envelope>

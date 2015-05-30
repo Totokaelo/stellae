@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+  <s:Header>
+    <a:Action s:mustUnderstand="1">SII/ISIIService/get_inventory_on_hand</a:Action>
+    <a:MessageID>urn:uuid:01a86a5e-0e02-4069-a17c-37113866e55c</a:MessageID>
+    <a:ReplyTo>
+      <a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>
+    </a:ReplyTo>
+    <a:To s:mustUnderstand="1">https://www.stellae.us/webservices/SIIService.svc</a:To>
+  </s:Header>
+  <s:Body>
+    <get_inventory_on_hand xmlns="SII">
+      <user xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:user_name>xxx</b:user_name>
+        <b:user_password>yyy</b:user_password>
+      </user>
+      <upcs xmlns:b="http://schemas.datacontract.org/2004/07/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <b:UPC_Inventory_Request>
+          <b:upc>4444000014319</b:upc>
+          <b:warehouse>NYC</b:warehouse>
+        </b:UPC_Inventory_Request>
+        <b:UPC_Inventory_Request>
+          <b:upc>4444000091655</b:upc>
+          <b:warehouse>NYC</b:warehouse>
+        </b:UPC_Inventory_Request>
+      </upcs>
+    </get_inventory_on_hand>
+  </s:Body>
+</s:Envelope>
