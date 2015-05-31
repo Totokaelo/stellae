@@ -39,7 +39,7 @@ module Stellae
       builder = case request
       when Stellae::Requests::ImportLineListRequest
         line_list_rows_xml = request.line_list_rows.map do |line_list_row|
-          Stellae::Xml::LineListRowBuilder.new(line_list_row).xml
+          Stellae::Xml::FragmentBuilder.new(line_list_row).xml
         end.join('')
 
         Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml)

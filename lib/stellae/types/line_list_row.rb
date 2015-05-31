@@ -1,5 +1,7 @@
 module Stellae
   module Types
+    # LineListRow corresponds to actual sellable goods - Product / Item / etc
+    #
     class LineListRow < Base
       # UPC
       # Unique id
