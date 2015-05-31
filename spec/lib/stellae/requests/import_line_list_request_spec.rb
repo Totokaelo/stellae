@@ -7,7 +7,7 @@ describe Stellae::Requests::ImportLineListRequest do
     described_class.new(line_list_rows: line_list_rows)
   }
 
-  let(:hat_line_list_row) { build(:line_list_row) }
+  let(:hat_line_list_row) { build(:line_list_row, description: "An updated test value") }
 
 
   it 'succeeds' do

@@ -4,18 +4,27 @@ require 'time'
 module Stellae
   module Xml
     class FragmentBuilder
-      def initialize(object, write_namespace_on_root: true)
+      def initialize(object, write_namespace_attributes_on_root: true)
         @object = object
-        @write_namespace_on_root = write_namespace_on_root
+        @write_namespace_attributes_on_root = write_namespace_attributes_on_root
       end
 
       def xml
         xml_builder = Builder::XmlMarkup.new
 
         if object_root_name
+          namespace_to_write = @write_namespace_attributes_on_root ? namespaces : nil
+          root_name = if @write_namespace_attributes_on_root
+            # Do NOT preface with namespace
+            object_root_name
+          else
+            # DO preface with namespace
+            tag_name(object_root_name)
+          end
+
           xml_builder.tag!(
-            object_root_name,
-            @write_namespace_on_root ? namespaces : nil
+            root_name,
+            namespace_to_write
           ) do
             write_attributes(xml_builder)
           end

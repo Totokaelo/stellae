@@ -14,7 +14,7 @@ module Stellae
           @object.upcs.each do |upc_inventory_request|
             upc_fragment_builder = Stellae::Xml::FragmentBuilder.new(
               upc_inventory_request,
-              write_namespace_on_root: false
+              write_namespace_attributes_on_root: false
             )
             x << upc_fragment_builder.xml
           end
