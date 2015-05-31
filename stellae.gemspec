@@ -1,7 +1,7 @@
 # -- this is magic line that ensures "../lib" is in the load path -------------
 $:.push File.expand_path("../lib", __FILE__)
 
-require "stellae/version"
+require 'stellae/version'
 
 Gem::Specification.new do |s|
   s.name        = 'stellae'
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.date        = '2015-04-24'
   s.summary     = "Ruby library for interacting with Stellae's web services"
   s.description = "Ruby library for interacting with Stellae's web services"
-  s.authors     = ["Quinton Harris"]
+  s.authors     = ['Quinton Harris']
   s.email       = 'quinton@totokaelo.com'
   s.homepage    = 'http://github.com/totokaelo/stellae'
   s.license     = 'MIT'
@@ -29,11 +29,12 @@ Gem::Specification.new do |s|
 
   # s.require_paths: Directories within the gem that need to be loaded in order
   #                  to load the gem.
-  s.require_paths = ["lib"]
+  s.require_paths = ['lib']
 
   # Dependencies
-  s.add_development_dependency "rspec", "~> 3.2"
-  s.add_development_dependency "guard-rspec", "~> 4"
+  s.add_development_dependency 'rspec', '~> 3.2'
+  s.add_development_dependency 'guard-rspec', '~> 4'
+  s.add_development_dependency 'factory_girl'
 
   s.add_runtime_dependency 'savon', '~> 2.10.0'
 end
