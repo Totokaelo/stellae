@@ -14,6 +14,10 @@ module Stellae
           define_writers(key, :datetime)
         end
 
+        def integer(key)
+          define_writers(key, :integer)
+        end
+
         def decimal(key)
           define_writers(key, :decimal)
         end

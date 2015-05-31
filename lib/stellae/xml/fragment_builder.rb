@@ -89,8 +89,10 @@ module Stellae
 
       def default(type)
         case type
-        when :decimal
+        when :integer
           0
+        when :decimal
+          0.0
         when :datetime
           Time.now
         else

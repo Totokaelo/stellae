@@ -1,46 +1,115 @@
 module Stellae
   module Types
-    class LineListRow
-    # Required
-      attr_accessor :upc,
-        :description,
-        :style,
-        :color_code,
-        :size_code
+    class LineListRow < Base
+      # UPC
+      # Unique id
+      #
+      string :upc
 
-      # Optional
-      attr_accessor :activity,
-        :activity_code,
-        :alternate_code,
-        :color,
-        :content,
-        :cost,
-        :country_of_origin,
-        :currency_code,
-        :fabric_code,
-        :htscode,
-        :imageurl,
-        :nrf_size,
-        :price_group,
-        :season_code,
-        :size,
-        :size_order
+      # Description
+      # Not sure
+      #
+      string :description
 
-      attr_writer :cost,
-        :retail_price,
-        :wholesale_price
+      # Style
+      # Not sure
+      #
+      string :style
 
-      def cost
-        @cost || 0.0
-      end
+      # Color Code
+      # NRF color code
+      #
+      string :color_code
 
-      def retail_price
-        @retail_price || 0.0
-      end
+      # Size
+      # Not sure
+      #
+      string :size
 
-      def wholesale_price
-        @wholesale_price || 0.0
-      end
+      # Size Order
+      # Not sure
+      #
+      integer :size_order
+
+      # Size Code
+      # Not sure
+      #
+      string :size_code
+
+      # NRF Size
+      #
+      string :nrf_size
+
+      # Activity
+      # Not sure
+      #
+      string :activity
+
+      # Activity Code
+      # Not sure
+      #
+      string :activity_code
+
+      # Alternate Code
+      # Not sure
+      #
+      string :alternate_code
+
+      # Color
+      # color name
+      #
+      string :color
+
+      # Content
+      # not sure
+      #
+      string :content
+
+      # Currency code
+      #
+      string :currency_code
+
+      # Price Group
+      # Not sure. Both examples used 'LIST'
+      #
+      string :price_group
+
+      # Cost
+      # Not sure
+      #
+      decimal :cost
+
+      # Retail Price
+      #
+      decimal :retail_price
+
+      # Wholesale Price
+      #
+      decimal :wholesale_price
+
+      # Country of Origin
+      # Full country name
+      #
+      string :country_of_origin
+
+      # Fabric Code
+      #
+      string :fabric_code
+
+      # HTS Code
+      # "Harmonized Tariff Code"
+      # http://www.customsinfo.com/Industry-Blog/bid/123187/What-is-an-HTS-Code
+      #
+      string :htscode
+
+      # Image URL
+      # Product Image Url
+      #
+      string :imageurl
+
+      # Season Code
+      #
+      string :season_code
     end
   end
 end
