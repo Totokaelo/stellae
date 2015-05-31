@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :line_list_row, class: Stellae::Types::LineListRow do
-    sequence(:upc) { |i| "TKTESTUPC0000#{i}" }
+    sequence(:upc) { |i| "TKTEST" + i.to_s.rjust(12, '0') }
     description 'A Cool Hat Description'
     style 'A Cool Hat Style'
     color_code '001'
@@ -25,6 +25,6 @@ FactoryGirl.define do
     htscode nil
     imageurl 'http://totokaelo.com/'
     price_group 'ghi' # wtf is this
-    season_code '33'
+    season_code 'FW15'
   end
 end

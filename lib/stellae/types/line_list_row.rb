@@ -3,6 +3,8 @@ module Stellae
     # LineListRow corresponds to actual sellable goods - Product / Item / etc
     #
     class LineListRow < Base
+      root_name :Line_list_row
+
       # UPC
       # Unique id
       #
@@ -72,7 +74,7 @@ module Stellae
       string :currency_code
 
       # Price Group
-      # Not sure. Both examples used 'LIST'
+      # Not sure, keep this at 'LIST'
       #
       string :price_group
 
