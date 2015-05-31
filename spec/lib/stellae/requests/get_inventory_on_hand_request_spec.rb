@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Stellae::Requests::GetInventoryOnHandRequest do
-
   subject { described_class.new }
 
   describe '#endpoint_name' do
@@ -17,17 +16,11 @@ describe Stellae::Requests::GetInventoryOnHandRequest do
 
   context 'with a couple UPC entries' do
     let(:upc_request_1) {
-      Stellae::Types::UpcInventoryRequest.new(
-        warehouse: 'NYC',
-        upc: 'ABC123'
-      )
+      build(:upc_inventory_request)
     }
 
     let(:upc_request_2) {
-      Stellae::Types::UpcInventoryRequest.new(
-        warehouse: 'NYC',
-        upc: 'DEF456'
-      )
+      build(:upc_inventory_request)
     }
 
     let(:upc_array) { [upc_request_1, upc_request_2] }
