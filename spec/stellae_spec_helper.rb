@@ -7,4 +7,11 @@ module StellaeSpecHelper
       logger: Logger.new(STDOUT)
     )
   end
+
+  def in_stock_upcs
+    [
+     'TKTEST000000414577',
+     'TKTEST000000415593'
+    ]
+  end
 end
