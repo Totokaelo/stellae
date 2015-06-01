@@ -32,11 +32,20 @@ describe Stellae::Xml::FragmentBuilder do
       expect(xml).to include("<a:attr1 i:nil=\"true\"/>")
     end
 
-    it 'should report 0 for nil decimals' do
+    it 'should report 0.0 for nil decimals' do
       expect(object).to receive(:get_attribute).with(:attr1)
       expect(object).to receive(:get_attribute_type).
         with(:attr1).
         and_return(:decimal)
+
+      expect(xml).to include("<a:attr1>0.0</a:attr1>")
+    end
+
+    it 'should report 0 for nil integers' do
+      expect(object).to receive(:get_attribute).with(:attr1)
+      expect(object).to receive(:get_attribute_type).
+        with(:attr1).
+        and_return(:integer)
 
       expect(xml).to include("<a:attr1>0</a:attr1>")
     end

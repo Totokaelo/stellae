@@ -1,19 +1,12 @@
+require 'stellae/response/base_response'
+
 module Stellae
-  class Response
-    attr_reader :request,
-      :status
-
-    def initialize(request:, status:)
-      @request = request
-      @status = status.to_i
-    end
-
-    def status_message
-      Stellae::StatusCodes[status]
-    end
-
-    def success?
-      @status == 1
+  module Response
+    def self.for(request, response)
+      Stellae::Response::BaseResponse.new(
+        request: request,
+        response: response
+      )
     end
   end
 end

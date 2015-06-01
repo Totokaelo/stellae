@@ -16,11 +16,11 @@ describe Stellae::Requests::GetInventoryOnHandRequest do
 
   context 'with a couple UPC entries' do
     let(:upc_request_1) {
-      build(:upc_inventory_request)
+      build(:upc_inventory_request, upc: 'TKTEST000000414577')
     }
 
     let(:upc_request_2) {
-      build(:upc_inventory_request)
+      build(:upc_inventory_request, upc: 'TKTEST000000415593')
     }
 
     let(:upc_array) { [upc_request_1, upc_request_2] }

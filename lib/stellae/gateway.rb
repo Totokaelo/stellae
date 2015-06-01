@@ -9,16 +9,9 @@ require 'stellae/types/order'
 require 'stellae/types/order_detail'
 require 'stellae/types/upc_inventory_request'
 
-require 'stellae/requests/base'
-require 'stellae/requests/get_catalog_information_request'
-require 'stellae/requests/get_inventory_on_hand_request'
-require 'stellae/requests/get_shipment_information'
-require 'stellae/requests/import_line_list_request'
-require 'stellae/requests/new_order_entry_request'
-
 require 'stellae/xml'
+require 'stellae/request'
 require 'stellae/response'
-require 'stellae/response_parser'
 
 module Stellae
   # Encapsulates all the weirdness of a Stellae request
@@ -47,15 +40,25 @@ module Stellae
     #   A Stellae::Response
     #
     def execute(request)
-      request_xml = Stellae::Xml.for_user_and_request(username, password, request)
+      # Build the request XML
+      request_xml = Stellae::Xml.for_user_and_request(
+        username,
+        password,
+        request
+      )
 
+      # Call the sucker
       savon_response = client.call(
         request.endpoint_name,
         attributes: default_request_attributes,
         message: request_xml
       )
 
-      savon_response
+      # Build + return the response
+      Stellae::Response.for(
+        request,
+        savon_response
+      )
     end
 
     def purchase_order_receipt
