@@ -4,12 +4,13 @@ module Stellae
       # Return an array of CatalogItem
       #
       def catalog_items
-        if !success? || body_catalog_items.nil?
-          return []
+        if success?
+          body_catalog_items.map do |hash|
+            Stellae::Types::CatalogItem.new(hash)
+          end
+        else
+          []
         end
-
-
-        body_catalog_items
       end
 
       private

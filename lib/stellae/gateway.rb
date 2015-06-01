@@ -4,6 +4,7 @@ require 'savon'
 require 'stellae/status_codes'
 
 require 'stellae/types/base'
+require 'stellae/types/catalog_item'
 require 'stellae/types/line_list_row'
 require 'stellae/types/order'
 require 'stellae/types/order_detail'
