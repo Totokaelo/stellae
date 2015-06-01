@@ -30,6 +30,7 @@ describe Stellae::Requests::GetInventoryOnHandRequest do
     it 'succeeds' do
       response = gateway.execute(subject)
       expect(response.success?).to be true
+
     end
   end
 end
