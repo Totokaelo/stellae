@@ -14,4 +14,11 @@ module StellaeSpecHelper
      'TKTEST000000415593'
     ]
   end
+
+  def created_order_ids
+    %w(
+      11098
+      11099
+    )
+  end
 end

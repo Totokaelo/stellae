@@ -97,14 +97,11 @@ module Stellae
       end
 
       # Most messages require alphabetical sorting, but some don't.
+      # Override this in specific builder classes if you need something more
       #
       def keys_sorted_for_serialization
-        if @object.keys_sorted_for_serialization
-          @object.keys_sorted_for_serialization
-        else
-          # Default to Case-insensitive alphabetization
-          object_attribute_keys.sort { |a, b| a.downcase <=> b.downcase }
-        end
+        # Default to Case-insensitive alphabetization
+        object_attribute_keys.sort { |a, b| a.downcase <=> b.downcase }
       end
 
       def value_or_default(key)
