@@ -25,6 +25,34 @@ module Stellae
       ].join('')
     end
 
+    def self.for(object)
+      builder = case object
+      when Stellae::Requests::ImportLineListRequest
+        line_list_rows_xml = object.line_list_rows.map do |line_list_row|
+          Stellae::Xml::FragmentBuilder.new(
+            line_list_row,
+            write_namespace_attributes_on_root: false
+          ).xml
+        end.join('')
+
+        Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml)
+      when Stellae::Requests::NewOrderEntryRequest
+        Stellae::Xml::OrderHeaderNewBuilder.new(order: object.order)
+      when Stellae::Requests::GetInventoryOnHandRequest
+        Stellae::Xml::GetInventoryRequestBuilder.new(object)
+      when Stellae::OrderDetail
+        Stellae::Xml::FragmentBuilder.new(
+          object,
+          write_namespace_attributes_on_root: false,
+          capitalize_attribute_tags: true
+        )
+      else
+        Stellae::Xml::FragmentBuilder.new(object)
+      end
+
+      builder.xml
+    end
+
     private
 
     def self.user_xml(username, password)
@@ -35,25 +63,7 @@ module Stellae
     end
 
     def self.request_xml(request)
-      builder = case request
-      when Stellae::Requests::ImportLineListRequest
-        line_list_rows_xml = request.line_list_rows.map do |line_list_row|
-          Stellae::Xml::FragmentBuilder.new(
-            line_list_row,
-            write_namespace_attributes_on_root: false
-          ).xml
-        end.join('')
-
-        Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml)
-      when Stellae::Requests::NewOrderEntryRequest
-        Stellae::Xml::OrderHeaderNewBuilder.new(order: request.order)
-      when Stellae::Requests::GetInventoryOnHandRequest
-        Stellae::Xml::GetInventoryRequestBuilder.new(request)
-      else
-        Stellae::Xml::FragmentBuilder.new(request)
-      end
-
-      builder.xml
+      self.for(request)
     end
   end
 end

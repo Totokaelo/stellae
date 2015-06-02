@@ -4,9 +4,14 @@ require 'time'
 module Stellae
   module Xml
     class FragmentBuilder
-      def initialize(object, write_namespace_attributes_on_root: true)
+      def initialize(
+        object,
+        write_namespace_attributes_on_root: true,
+        capitalize_attribute_tags: false
+      )
         @object = object
         @write_namespace_attributes_on_root = write_namespace_attributes_on_root
+        @capitalize_attribute_tags = capitalize_attribute_tags
       end
 
       def xml
@@ -57,9 +62,13 @@ module Stellae
           elsif attribute_type == :collection
             xml_builder.tag! tag do |x|
               value.each do |v|
+                # This is terrible
+                capitalize_attributes = v.is_a?(Stellae::OrderDetail)
+
                 fragment_builder = FragmentBuilder.new(
                   v,
-                  write_namespace_attributes_on_root: false
+                  write_namespace_attributes_on_root: false,
+                  capitalize_attribute_tags: capitalize_attributes
                 )
 
                 x << fragment_builder.xml
@@ -72,18 +81,28 @@ module Stellae
       end
 
       def tag_name(object_key)
-        "#{namespace}:#{object_key}"
+        if @capitalize_attribute_tags
+          "#{namespace}:#{object_key.upcase}"
+        else
+          "#{namespace}:#{object_key}"
+        end
       end
 
       def each_attribute
-        alphabetized_keys.each do |key|
+        keys_sorted_for_serialization.each do |key|
           yield(key, value_or_default(key))
         end
       end
 
-      def alphabetized_keys
-        # Case-insensitive alphabetization
-        object_attribute_keys.sort { |a, b| a.downcase <=> b.downcase }
+      # Most messages require alphabetical sorting, but some don't.
+      #
+      def keys_sorted_for_serialization
+        if @object.keys_sorted_for_serialization
+          @object.keys_sorted_for_serialization
+        else
+          # Default to Case-insensitive alphabetization
+          object_attribute_keys.sort { |a, b| a.downcase <=> b.downcase }
+        end
       end
 
       def value_or_default(key)

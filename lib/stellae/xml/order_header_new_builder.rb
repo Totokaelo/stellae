@@ -11,6 +11,8 @@ module Stellae
         case object_key
         when :shipping_fees
           "#{namespace}:SHIPPPING_FEES"
+        when :order_details
+          "#{namespace}:Order_Details"
         else
           "#{namespace}:#{object_key.upcase}"
         end

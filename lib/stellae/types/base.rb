@@ -57,6 +57,10 @@ module Stellae
         end
       end
 
+      def keys_sorted_for_serialization
+        nil
+      end
+
       def attribute_keys
         self.class.attributes.keys
       end

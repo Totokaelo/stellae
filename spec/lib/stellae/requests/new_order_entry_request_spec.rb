@@ -1,8 +1,13 @@
 require 'spec_helper'
 
-describe Stellae::Requests::NewOrderEntryRequest do
+describe Stellae::Requests::NewOrderEntryRequest, :focus do
   let(:order_detail) {
-    build(:order_detail)
+    build(
+      :order_detail,
+      sku: in_stock_upcs[0],
+      price: 10,
+      quantity: 1
+    )
   }
 
   let(:order) { build(:order, order_details: order_details) }
@@ -16,10 +21,22 @@ describe Stellae::Requests::NewOrderEntryRequest do
       response = gateway.execute(subject)
       expect(response.success?).to be false
       expect(response.status).to eq 8
+
     end
   end
 
-  context 'order with full order detail', :focus do
+  context 'order with full order detail' do
+    let(:order) {
+      build(
+        :order,
+        order_details: order_details,
+        discount: 0,
+        taxes: 0,
+        shipping_fees: 0,
+        total_amount: 10
+      )
+    }
+
     let(:order_details) { [order_detail] }
 
     it 'succeeds' do

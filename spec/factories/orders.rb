@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :order, class: Stellae::Order do
-    sequence(:order_id) { "TKTEST-ORDER-#{Time.new.to_i}" }
+    sequence(:order_id) { "TKTO-#{Time.new.to_i.to_s[-5..-1]}" }
 
     carrier 'FEDEX'
     service 02
