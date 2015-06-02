@@ -1,3 +1,5 @@
+require 'date'
+
 module Stellae
   module Types
     class Base

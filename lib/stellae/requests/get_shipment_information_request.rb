@@ -11,7 +11,6 @@ module Stellae
       datetime :date_from
       datetime :date_to
       string :order_id
-
     end
   end
 end

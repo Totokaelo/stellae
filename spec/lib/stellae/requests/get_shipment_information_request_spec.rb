@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Stellae::Requests::GetShipmentInformationRequest, :focus do
+describe Stellae::Requests::GetShipmentInformationRequest do
   subject { described_class.new }
 
   describe '#endpoint_name' do

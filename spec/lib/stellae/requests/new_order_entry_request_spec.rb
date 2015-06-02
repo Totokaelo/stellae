@@ -10,6 +10,7 @@ describe Stellae::Requests::NewOrderEntryRequest do
     )
   }
 
+  let(:order_details) { [order_detail] }
   let(:order) { build(:order, order_details: order_details) }
 
   subject { described_class.new(order: order) }
@@ -17,6 +18,7 @@ describe Stellae::Requests::NewOrderEntryRequest do
   context 'empty order' do
     let(:order_details) { [] }
 
+    # Disable for now
     xit 'fails' do
       response = gateway.execute(subject)
       expect(response.success?).to be false
@@ -35,8 +37,6 @@ describe Stellae::Requests::NewOrderEntryRequest do
         total_amount: 10
       )
     }
-
-    let(:order_details) { [order_detail] }
 
     it 'succeeds' do
       response = gateway.execute(subject)

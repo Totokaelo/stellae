@@ -2,6 +2,7 @@ require 'stellae/response/base_response'
 require 'stellae/response/get_catalog_information_response'
 require 'stellae/response/get_inventory_on_hand_response'
 require 'stellae/response/get_shipment_information_response'
+require 'stellae/response/new_order_entry_response'
 
 module Stellae
   module Response
@@ -17,6 +18,8 @@ module Stellae
           Stellae::Response::GetInventoryOnHandResponse
         when :get_shipment_information_response
           Stellae::Response::GetShipmentInformationResponse
+        when :new_order_entry_response
+          Stellae::Response::NewOrderEntryResponse
         else
           Stellae::Response::BaseResponse
         end
