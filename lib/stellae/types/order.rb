@@ -12,6 +12,7 @@ module Stellae
     # Must be "OO" or "CM"
     # OO: New Order
     # CM: Order Return
+    #
     string :order_type
 
     # Email
@@ -31,6 +32,10 @@ module Stellae
     # ex: '01' (FEDEX PRIORITY OVERNIGHT)
     #
     string :service
+
+    def service=(srv)
+      @service = srv.to_s.rjust(2, '0')
+    end
 
     # Freight Account
     # "On bill to receipt, recipient’s account"
