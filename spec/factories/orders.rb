@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:order_id) { "TKTO-#{Time.new.to_i.to_s[-5..-1]}" }
 
     carrier 'FEDEX'
-    service 02
+    service '02'
 
     currency 'USD'
     customer_address_1 '5 Crosby st.'

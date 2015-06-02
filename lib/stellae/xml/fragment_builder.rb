@@ -24,7 +24,9 @@ module Stellae
             object_root_name
           else
             # DO preface with namespace
-            tag_name(object_root_name)
+            # hate hate hate
+            # tag_name(object_root_name)
+            "#{namespace}:#{object_root_name}"
           end
 
           xml_builder.tag!(

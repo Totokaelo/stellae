@@ -17,11 +17,10 @@ describe Stellae::Requests::NewOrderEntryRequest, :focus do
   context 'empty order' do
     let(:order_details) { [] }
 
-    it 'fails' do
+    xit 'fails' do
       response = gateway.execute(subject)
       expect(response.success?).to be false
       expect(response.status).to eq 8
-
     end
   end
 

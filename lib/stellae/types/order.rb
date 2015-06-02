@@ -77,8 +77,10 @@ module Stellae
     string :delivery_door_edi
     string :delivery_from
     string :delivery_id
+
     string :delivery_message
     string :delivery_name
+
     string :delivery_telephone
     string :delivery_to
 
@@ -149,6 +151,8 @@ module Stellae
 
         delivery_from
         delivery_id
+        delivery_message
+        delivery_name
         delivery_telephone
         delivery_to
 
