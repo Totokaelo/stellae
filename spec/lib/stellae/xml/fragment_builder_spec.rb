@@ -11,6 +11,14 @@ describe Stellae::Xml::FragmentBuilder do
     )
   }
 
+  let(:child_object) {
+    double(
+      'child-object',
+      root_name: 'child-object',
+      attribute_keys: [:child_attr1]
+    )
+  }
+
   subject { described_class.new(object) }
 
   describe '#xml' do
@@ -48,6 +56,33 @@ describe Stellae::Xml::FragmentBuilder do
         and_return(:integer)
 
       expect(xml).to include("<a:attr1>0</a:attr1>")
+    end
+
+    let(:collection) { [child_object, child_object] }
+
+    it 'should dig into collections' do
+      expect(object).to receive(:get_attribute).
+        with(:attr1).
+        exactly(1).
+        and_return(collection)
+
+      expect(object).to receive(:get_attribute_type).
+        with(:attr1).
+        exactly(2).
+        and_return(:collection)
+
+      expect(child_object).to receive(:get_attribute).
+        with(:child_attr1).
+        exactly(2).
+        and_return("hello")
+
+      expect(child_object).to receive(:get_attribute_type).
+        with(:child_attr1).
+        exactly(4).
+        and_return(:string)
+
+      child_xml = '<a:child-object><a:child_attr1>hello</a:child_attr1></a:child-object>'
+      expect(xml).to include("<a:attr1>#{child_xml * collection.length}</a:attr1>")
     end
   end
 end

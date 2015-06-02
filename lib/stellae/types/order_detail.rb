@@ -1,17 +1,17 @@
 module Stellae
-  module Types
-    class OrderDetail < Base
-      string :cost
-      string :flags
-      string :line_id
-      string :lot_number
+  class OrderDetail < Types::Base
+    root_name :order_detail
 
-      decimal :price
-      decimal :quantity
+    string :cost
+    string :flags
+    string :line_id
+    string :lot_number
 
-      string :retail_price
-      string :size
-      string :sku
-    end
+    decimal :price
+    decimal :quantity
+
+    string :retail_price
+    string :size
+    string :sku
   end
 end

@@ -46,36 +46,33 @@ module Stellae
         @object.attribute_keys
       end
 
-      def object_get_attribute(key)
-        @object.get_attribute(key)
-      end
-
-      def object_get_attribute_type(key)
-        @object.get_attribute_type(key)
-      end
-
       def write_attributes(xml_builder)
         each_attribute do |key, value|
-          write_tag(
-            xml_builder,
-            key,
-            value
-          )
+          attribute_type = @object.get_attribute_type(key)
+
+          tag = tag_name(key)
+
+          if value.nil?
+            xml_builder.tag! tag, 'i:nil' => true
+          elsif attribute_type == :collection
+            xml_builder.tag! tag do |x|
+              value.each do |v|
+                fragment_builder = FragmentBuilder.new(
+                  v,
+                  write_namespace_attributes_on_root: false
+                )
+
+                x << fragment_builder.xml
+              end
+            end
+          else
+            xml_builder.tag! tag, value
+          end
         end
       end
 
       def tag_name(object_key)
         "#{namespace}:#{object_key}"
-      end
-
-      def write_tag(x, key, value)
-        tag = tag_name(key)
-
-        if value.nil?
-          x.tag! tag, 'i:nil' => true
-        else
-          x.tag! tag, value
-        end
       end
 
       def each_attribute
@@ -90,8 +87,13 @@ module Stellae
       end
 
       def value_or_default(key)
-        value = object_get_attribute(key)
-        default = default(object_get_attribute_type(key))
+        # Get the type of the attribute
+        attribute_type = @object.get_attribute_type(key)
+
+        # Get the native value of the attribute
+        value = @object.get_attribute(key)
+
+        default = default(attribute_type)
 
         present(value || default)
       end
