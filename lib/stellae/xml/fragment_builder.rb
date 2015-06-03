@@ -113,7 +113,7 @@ module Stellae
 
         default = default(attribute_type)
 
-        present(value || default)
+        present(value || default, attribute_type)
       end
 
       def default(type)
@@ -129,9 +129,14 @@ module Stellae
         end
       end
 
-      def present(value)
-        if value.is_a?(Time)
-          value.iso8601
+      def present(value, attribute_type)
+        if attribute_type == :datetime
+          # Endpoint will only read ISO8601, sans timezone
+          # so return iso8601 but strip the timezone
+          #
+          # ex: "2015-06-03T20:19:16Z" -> "2015-06-03T20:19:16"
+          #
+          value.iso8601[0...19]
         else
           # nothing to do
           value
