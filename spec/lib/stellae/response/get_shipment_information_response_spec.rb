@@ -9,10 +9,15 @@ describe Stellae::Response::GetShipmentInformationResponse, :focus do
   let(:request) {
     build(
       :get_shipment_information_request,
-      #order_id: 'TKTO-75466',
 
-      date_from: DateTime.parse('2015.06.01'),
-      date_to: DateTime.parse('2015.06.03')
+      # order_id: 'TKTO-75466',
+      # order_id: 'TKTO-76014',
+
+
+      # Shipped Order Information: '11097'
+      # order_id: 'TKTO-74187',
+      date_from: '2015-05-30T17:00:00',
+      date_to: '2015-05-30T17:00:00',
     )
   }
 

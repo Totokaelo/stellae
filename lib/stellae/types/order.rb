@@ -1,11 +1,13 @@
 module Stellae
+  # The subject of the NewOrderEntry call to Stellae
+  #
   class Order < Types::Base
     root_name :ohn
 
     # Order Id
     # 'Order number (sending system order number).  Stellae will store this
     # information and have use a different order number internally'
-    # Our native Order Id
+    # Your native Order Id
     #
     string :order_id
 
@@ -126,7 +128,7 @@ module Stellae
     def initialize(init_hash = {})
       super(init_hash)
 
-      @order_type = 'OO'
+      @order_type ||= 'OO'
     end
   end
 end

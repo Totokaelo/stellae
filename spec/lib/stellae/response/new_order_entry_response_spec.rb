@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Stellae::Response::NewOrderEntryResponse, :focus do
+describe Stellae::Response::NewOrderEntryResponse do
   let(:order_detail) {
     build(
       :order_detail,
