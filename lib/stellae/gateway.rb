@@ -9,6 +9,8 @@ require 'stellae/types/line_list_row'
 require 'stellae/types/order'
 require 'stellae/types/order_detail'
 require 'stellae/types/upc_inventory_request'
+require 'stellae/types/shipment_carton'
+require 'stellae/types/shipment_status'
 
 require 'stellae/xml'
 require 'stellae/request'

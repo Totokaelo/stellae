@@ -13,8 +13,20 @@ module Stellae
 
       root_name :ohn
 
+      # Starting date
+      # Time values will be ignored
+      #
       datetime :date_from
+
+      # Ending date for request window
+      # Time values will be ignored
+      # Cannot be larger than 14 days from date_from
+      #
       datetime :date_to
+
+      # Internal Order Id of the order you want to know about.
+      # Note the order processing timestamp must fall inside date_from->date_to.
+      #
       string :order_id
     end
   end

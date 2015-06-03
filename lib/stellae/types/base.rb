@@ -46,8 +46,22 @@ module Stellae
           # Assign Type
           attributes[key] = type
 
-          # Define Accessor
-          attr_accessor key
+          # Define Reader
+          attr_reader key
+
+          # Define Writer
+
+          case type
+          when :integer
+            define_method("#{key}=".intern) { |v| instance_variable_set("@#{key}".intern, v.to_i) }
+
+          when :decimal
+            define_method("#{key}=".intern) { |v| instance_variable_set("@#{key}".intern, v.to_f) }
+
+          else
+            attr_writer key
+
+          end
         end
       end
 

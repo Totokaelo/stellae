@@ -4,11 +4,11 @@ module Stellae
   class ShipmentStatus < Types::Base
     # Array of ShipmentCartons
     #
-    collection :cartons
+    collection :shipment_cartons
 
     # Invoice Date
     #
-    date :invoice_date
+    datetime :invoice_date
 
     # Invoice Number
     # Carrier-specific Order Id
@@ -21,10 +21,11 @@ module Stellae
     #
     string :invoice_type
 
-    # Invoice Id
-    # ???
+    # Order Id
+    # Carrier-specific Order Id
+    # Not sure how this differs from Invoice Number
     #
-    string :invoice_id
+    string :order_id
   end
 end
 

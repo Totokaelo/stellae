@@ -28,12 +28,14 @@ module Stellae
     string :lot_number
 
     # Price
+    # the price the unit sold at
     #
     decimal :price
 
     # Quantity
+    # Quantity to ship
     #
-    decimal :quantity
+    integer :quantity
 
     # Retail Price
     #
@@ -42,5 +44,10 @@ module Stellae
     # Size
     #
     string :size
+
+    # Season
+    # comes over the wire, Not sure what this is used for
+    #
+    string :season
   end
 end
