@@ -3,6 +3,7 @@ require 'stellae/response/get_catalog_information_response'
 require 'stellae/response/get_inventory_on_hand_response'
 require 'stellae/response/get_shipment_information_response'
 require 'stellae/response/new_order_entry_response'
+require 'stellae/response/advance_ship_notice_response'
 
 module Stellae
   module Response
@@ -14,12 +15,19 @@ module Stellae
       klass = case response_name
         when :get_catalog_information_response
           Stellae::Response::GetCatalogInformationResponse
+
         when :get_inventory_on_hand_response
           Stellae::Response::GetInventoryOnHandResponse
+
         when :get_shipment_information_response
           Stellae::Response::GetShipmentInformationResponse
+
         when :new_order_entry_response
           Stellae::Response::NewOrderEntryResponse
+
+        when :new_asn_entry_response
+          Stellae::AdvanceShipNoticeResponse
+
         else
           Stellae::Response::BaseResponse
         end

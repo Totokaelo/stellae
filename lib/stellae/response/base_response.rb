@@ -36,10 +36,6 @@ module Stellae
         result = source
 
         attrs.each do |attr|
-          if result.is_a?(Array)
-            puts "DUG INTO #{attr} BUT FOUND ARRAY"
-          end
-
           result = result[attr]
 
           break if result.nil?

@@ -64,18 +64,6 @@ module Stellae
       )
     end
 
-    def purchase_order_receipt
-      # This is to find out what has been received.
-      raise NotImplementedError
-    end
-
-    def new_asn_entry
-      # "Advance ship notice"
-      # This message provides the needed information to receive goods into inventory.
-      # This should be sent instead of a purchase order.
-      raise NotImplementedError
-    end
-
     private
 
     attr_reader :logger,
