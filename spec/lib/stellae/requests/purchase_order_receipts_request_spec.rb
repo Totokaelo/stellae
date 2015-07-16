@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Stellae::PurchaseOrderReceiptsRequest do
+  subject { described_class.new(po_xact: 1) }
+
   let(:response) { gateway.execute(subject) }
 
   it 'succeeds' do
