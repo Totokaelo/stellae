@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.2'
   s.add_development_dependency 'guard-rspec', '~> 4'
   s.add_development_dependency 'factory_girl'
+  s.add_development_dependency 'activesupport'
 
   s.add_runtime_dependency 'savon', '~> 2.10.0'
 end

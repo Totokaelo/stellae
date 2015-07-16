@@ -112,6 +112,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   factory_girl
   guard-rspec (~> 4)
   rspec (~> 3.2)
