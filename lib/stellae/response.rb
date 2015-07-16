@@ -4,6 +4,7 @@ require 'stellae/response/get_inventory_on_hand_response'
 require 'stellae/response/get_shipment_information_response'
 require 'stellae/response/new_order_entry_response'
 require 'stellae/response/advance_ship_notice_response'
+require 'stellae/response/purchase_order_receipts_response'
 
 module Stellae
   module Response
@@ -27,6 +28,12 @@ module Stellae
 
         when :new_asn_entry_response
           Stellae::AdvanceShipNoticeResponse
+
+        when :new_asn_entry_response
+          Stellae::AdvanceShipNoticeResponse
+
+        when :get_purchase_order_receipt_response
+          Stellae::PurchaseOrderReceiptsResponse
 
         else
           Stellae::Response::BaseResponse
