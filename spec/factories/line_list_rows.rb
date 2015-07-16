@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :line_list_row, class: Stellae::Types::LineListRow do
-    sequence(:upc) { |i| "TKTEST" + i.to_s.rjust(12, '0') }
+    sequence(:upc) { Time.new.to_i.to_s.rjust(16,'0')[0..16] }
     description 'A Cool Hat Description'
     style 'A Cool Hat Style'
     color_code '001'
