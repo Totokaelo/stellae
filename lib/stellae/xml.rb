@@ -36,16 +36,20 @@ module Stellae
         end.join('')
 
         Stellae::Xml::LineListRowsBuilder.new(line_list_rows_xml)
+
       when Stellae::Requests::NewOrderEntryRequest
         Stellae::Xml::OrderHeaderNewBuilder.new(order: object.order)
+
       when Stellae::Requests::GetInventoryOnHandRequest
         Stellae::Xml::GetInventoryRequestBuilder.new(object)
+
       when Stellae::OrderDetail
         Stellae::Xml::FragmentBuilder.new(
           object,
           write_namespace_attributes_on_root: false,
           capitalize_attribute_tags: true
         )
+
       else
         Stellae::Xml::FragmentBuilder.new(object)
       end
