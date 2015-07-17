@@ -21,6 +21,6 @@ module Stellae
 
     # 'normally stellae purchase order transaction number'
     #
-    string :po_xact
+    integer :po_xact
   end
 end

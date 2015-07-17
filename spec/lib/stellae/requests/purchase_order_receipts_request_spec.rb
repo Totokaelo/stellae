@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe Stellae::PurchaseOrderReceiptsRequest do
-  subject { described_class.new(po_xact: 1) }
+  subject {
+    described_class.new(
+      po_xact: 1391
+    )
+  }
 
   let(:response) { gateway.execute(subject) }
 
@@ -9,7 +13,7 @@ describe Stellae::PurchaseOrderReceiptsRequest do
     expect(response.success?).to be true
   end
 
-  it 'is the correct class' do
+  xit 'is the correct class' do
     expect(response.is_a?(Stellae::PurchaseOrderReceiptsResponse)).to be true
   end
 end

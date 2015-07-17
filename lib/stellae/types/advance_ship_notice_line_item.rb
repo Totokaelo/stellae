@@ -11,67 +11,67 @@ module Stellae
 
     # 'carton number'
     #
-    #string :cartonno
+    string :cartonno
 
     # 'carton ref'
     #
-    #string :cartonref
+    string :cartonref
 
     # 'color'
     # Most likely NRF color code.
     #
-   # string :color_code
+    string :color_code
 
     # 'comment'
     #
-   # string :comment
+    string :comment
 
     # 'composition'
     #
- #   string :composition
+    string :composition
 
     # 'unit cost'
     #
- #   decimal :cost
-#u
+    decimal :cost
+
     # 'Country of Origin'
     #
-#    string :country_origin
+    string :country_origin
 
     # 'customer code'
     #
-#    string :customer_code
+    string :customer_code
 
     # 'description'
     #
-#    string :description
+    string :description
 
     # Not documented
     #
-#    string :lot_number
+    string :lot_number
 
     # 'quantity expected'
     #
-#    decimal :quantity
+    decimal :quantity
 
     # 'sales order number'
     #
-#    string :sales_order
+    string :sales_order
 
     # 'season'
     #
-#    string :season
+    string :season
 
     # 'size'
     #
-#    string :size_code
+    string :size_code
 
     # 'store/door code'
     #
-#    string :store_code
+    string :store_code
 
     # 'style'
     #
-#    string :style
+    string :style
   end
 end

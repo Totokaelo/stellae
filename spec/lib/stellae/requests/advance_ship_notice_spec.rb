@@ -24,11 +24,15 @@ describe Stellae::AdvanceShipNoticeRequest do
     )
   }
 
-  let(:invoice_number) { 'ABC123' }
-  let(:po_number) { 'ABC123' }
+  let(:invoice_number) { "TEST#{Time.new.to_i}" }
+  let(:po_number) { "TEST#{Time.new.to_i}" }
 
   let(:advance_ship_notice_line_item) {
-    FactoryGirl.build(:advance_ship_notice_line_item, sku: existing_sku)
+    FactoryGirl.build(
+      :advance_ship_notice_line_item,
+      sku: existing_sku,
+      quantity: 10
+    )
   }
 
   let(:advance_ship_notice_line_items) {
