@@ -6,7 +6,7 @@ require 'stellae/version'
 Gem::Specification.new do |s|
   s.name        = 'stellae'
   s.version     = Stellae::VERSION
-  s.date        = '2015-04-24'
+  s.date        = '2015-07-17'
   s.summary     = "Ruby library for interacting with Stellae's web services"
   s.description = "Ruby library for interacting with Stellae's web services"
   s.authors     = ['Quinton Harris']
