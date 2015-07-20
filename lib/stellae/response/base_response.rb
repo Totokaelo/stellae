@@ -21,7 +21,9 @@ module Stellae
       end
 
       def status_message
-        Stellae::StatusCodes[status]
+        # Status messages are coming back '0009 missing color code on line 1'
+        #
+        body[:status]
       end
 
       def success?

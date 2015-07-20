@@ -3,7 +3,9 @@ require 'spec_helper'
 describe Stellae::PurchaseOrderReceiptsRequest do
   subject {
     described_class.new(
-      po_xact: 1391
+      entry_date_from: (Date.today - 7),
+      entry_date_from: Date.today,
+      po_xact: 1394
     )
   }
 

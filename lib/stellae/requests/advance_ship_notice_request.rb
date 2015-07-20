@@ -17,6 +17,10 @@ module Stellae
     #
     datetime :invoice_date
 
+    # Ship Date
+    #
+    datetime :ship_date
+
     # 'normally invoice number'
     #
     string :poref1
@@ -32,10 +36,6 @@ module Stellae
     # Not mentioned in the documentation
     #
     string :season
-
-    # Ship Date
-    #
-    datetime :ship_date
 
     # None of these are mentioned in the documentation!!! Yay
     #
