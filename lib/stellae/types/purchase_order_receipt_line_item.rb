@@ -29,6 +29,7 @@ module Stellae
     decimal :qty_rcvd
 
     # extended amount
+    # TODO: What the hell is this?
     #
     decimal :extended_amount
 
@@ -56,12 +57,26 @@ module Stellae
     #
     string :pocomment
 
+    #
+    #
     string :style
 
+    #
+    #
     string :color_code
 
+    #
+    #
     string :size_code
 
+    #
+    #
     string :lot_number
+
+    protected
+
+    # 'ext_amount' coming across the wire – this is a helper for initializer.
+    #
+    alias_method :ext_amount=, :extended_amount=
   end
 end

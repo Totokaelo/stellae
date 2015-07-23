@@ -11,6 +11,7 @@ require 'stellae/types/order_detail'
 require 'stellae/types/upc_inventory_request'
 require 'stellae/types/shipment_carton'
 require 'stellae/types/shipment_status'
+require 'stellae/types/purchase_order_receipt_line_item'
 
 require 'stellae/xml'
 require 'stellae/request'
