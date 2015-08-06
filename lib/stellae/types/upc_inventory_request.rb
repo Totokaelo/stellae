@@ -1,12 +1,10 @@
 module Stellae
-  module Types
-    # Used in conjunction with GetInventoryOnHandRequest
-    #
-    class UpcInventoryRequest < Base
-      root_name :UPC_Inventory_Request
+  # Used in conjunction with GetInventoryOnHandRequest
+  #
+  class UpcInventoryRequest < Types::Base
+    root_name :UPC_Inventory_Request
 
-      string :warehouse
-      string :upc
-    end
+    string :warehouse
+    string :upc
   end
 end
