@@ -29,7 +29,7 @@ module Stellae
     decimal :qty_rcvd
 
     # extended amount
-    # TODO: What the hell is this?
+    # 'qty x unit price'
     #
     decimal :extended_amount
 
