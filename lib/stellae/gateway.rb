@@ -90,7 +90,7 @@ module Stellae
 
         logger: @logger,
         pretty_print_xml: true,
-        log_level: :debug,
+        log_level: :warn,
         log: true
       ) do
         # prevent conversion to camelCase
